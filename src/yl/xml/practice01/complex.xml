@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config_info>
+
+	<computer id="pc_001">
+		<brand>Acer</brand>
+		<ip>192.168.68.101</ip>
+	</computer>
+	
+	<student id="zzu20170001">
+		<name>张三</name>
+		<age>12</age>
+		<contact>
+			<telephone>13812345678</telephone>
+			<email>123@qq.com</email>
+		</contact>
+		<!-- <computer ref="pc_001"/> -->
+	</student>
+
+</config_info>
+
