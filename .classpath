@@ -2,7 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="lib/commons-net-3.5.jar" sourcepath="E:/JavaDevTools/java框架工具/commons-net-3.6-src.zip"/>
+	<classpathentry kind="lib" path="lib/commons-net-3.5.jar" sourcepath="D:/workspace/ws-git/mysrc/src">
+		<attributes>
+			<attribute name="source_encoding" value="UTF-8"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/snmp4j-2.5.8.jar" sourcepath="E:/JavaDevTools/java框架工具/snmp4j-2.5.8-distribution/snmp4j-2.5.8/src"/>
 	<classpathentry kind="lib" path="lib/pdfbox-1.7.1.jar"/>
 	<classpathentry kind="lib" path="lib/poi-3.16-beta1.jar"/>
