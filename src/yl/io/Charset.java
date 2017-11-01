@@ -21,7 +21,7 @@ public class Charset {
 	public static void main(String[] args) throws IOException, SQLException {
 		Connection conn = DBUtils.GetConn42_netmg();
 		Statement st = conn.createStatement();
-		String sql = "SELECT * FROM \"MYTT\".\"ELE_REMARK\" WHERE REMARK1 LIKE '¡ª%'";
+		String sql = "SELECT * FROM \"MYTT\".\"ELE_REMARK\" WHERE REMARK1 LIKE 'â€”%'";
 		ResultSet rs = st.executeQuery(sql);
 		File data = new File("C:/201101_day.dat");
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(data), "utf-8"));
@@ -32,10 +32,10 @@ public class Charset {
 		bw.flush();
 		bw.close();
 		
-//		String cn_ = "¡ª"; // -
+//		String cn_ = "â€”"; // -
 //		System.out.println(cn_.compareTo("-"));
-//		System.out.println(cn_.compareTo("¡ª"));
-//		System.out.println(cn_.compareTo("¡ª"));
+//		System.out.println(cn_.compareTo("â€”"));
+//		System.out.println(cn_.compareTo("â€”"));
 //		File data = new File("C:/201101_day.dat");
 //		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(data), "utf-8"));
 //		bw.write(cn_);
