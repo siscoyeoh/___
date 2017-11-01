@@ -7,6 +7,14 @@ import java.sql.ResultSet;
 
 public class DBUtils {
 	
+	public static Connection GetConn42_netmg() {
+		String jdbcdriver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@192.168.8.42:1521:orcl";
+		String username = "mytt";
+		String password = "mytt";
+		return connect(jdbcdriver, url, username, password);
+	}
+	
 	public static Connection GetConn115_netmg() {
 		String jdbcdriver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@192.168.8.115:1521:ZULSTEST";

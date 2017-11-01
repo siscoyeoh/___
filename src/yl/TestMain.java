@@ -1,16 +1,29 @@
 package yl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TimeZone;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang.ArrayUtils;
+
 
 public class TestMain {
 	public static void main(String[] args) {
 		
-		String str = "kkk;lll;;;ooo;";
-		String[] arr = str.split(";", 0);
-		System.out.println(arr.length);
+		
+//		MapUtils.
+		
+		
+//		String str = "kkk;lll;;;ooo;";
+//		String[] arr = str.split(";", 0);
+//		System.out.println(arr.length);
 		
 //		String sql = "SELECT A.TABLESPACE_NAME, TOTAL, FREE, TOTAL-FREE AS USED FROM \n" +
 //				"(SELECT TABLESPACE_NAME, SUM(BYTES)/1024/1024 AS TOTAL FROM DBA_DATA_FILES GROUP BY TABLESPACE_NAME) A, \n" +

@@ -26,11 +26,15 @@ public class SMBTest {
 //		LoadDataMGConfig.Load();
 //		System.out.println(DataMGConfigContainer.getBackupLastestFile().toString());
 		displayFilesName();
-		uploadFiles();
+//		uploadFiles();
 	}
 	
 	public static void displayFilesName() throws MalformedURLException, SmbException {
-		 String url = "smb://192.168.8.115/SMB/";
+		String host = "192.168.8.115";
+		String username = "smbuser";
+		String password = "smbuser";
+		 String url = "smb://" + username + ":" + password + "@" + host+ "/";
+//		String url = "smb://127.0.0.1/smb_shared/";
 //		 url = "smb://192.168.8.44/smbsharedfolder/";
 //		 url = "smb://127.0.0.1/smbsharedfolder/";
 //		 url = "smb://localhost/smbsharedfolder/";
