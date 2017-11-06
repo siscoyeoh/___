@@ -35,7 +35,7 @@ public class Tools {
 		int c1 = delete("localhost", "/copyfiles/");
 		int c2 = delete("192.168.8.115", "/test115");
 		int c3 = delete("192.168.8.123", "/test");
-		System.out.println("·Ö±ğÉ¾³ıÎÄ¼ş:" + c1 + ", " + c2 + ", " + c3 + "¸ö");
+		System.out.println("åˆ†åˆ«åˆ é™¤æ–‡ä»¶:" + c1 + ", " + c2 + ", " + c3 + "ä¸ª");
 		display("localhost", "/copyfiles/");
 		display("192.168.8.115", "/test115");
 		display("192.168.8.123", "/test");
@@ -120,8 +120,8 @@ public class Tools {
 		String username = "ftpuser";
 		String password = "ftpuser";
 		FTPClient ftpClient = FTPUtils.GetFTPClient(ftpHost, port, username, password);
-		String suffix = "_TEMP"; // server.getTemp_file_suffix(); // ÁÙÊ±ÎÄ¼şºó×º
-//		String path = server.getDestination_path(); // ÎÄ¼ş´æ·ÅÂ·¾¶
+		String suffix = "_TEMP"; // server.getTemp_file_suffix(); // ä¸´æ—¶æ–‡ä»¶åç¼€
+//		String path = server.getDestination_path(); // æ–‡ä»¶å­˜æ”¾è·¯å¾„
 		if (StringUtils.isNotEmpty(suffix)) {
 			System.out.println("path:" + path);
 			FTPFile[] filesRe = ftpClient.listFiles(path == null ? "" : path);
@@ -131,9 +131,9 @@ public class Tools {
 					String fileName = fileRe.getName();
 					System.out.println(fileName);
 					if (fileName.endsWith(suffix)) {
-						System.out.println("ĞèÒªÖØÃüÃûµÄ:" + fileName);
+						System.out.println("éœ€è¦é‡å‘½åçš„:" + fileName);
 						String newName = fileName.substring(0, fileName.length() - suffix.length());
-						System.out.println("ĞèÒªÖØÃüÃûÎª:" + newName);
+						System.out.println("éœ€è¦é‡å‘½åä¸º:" + newName);
 						boolean res = ftpClient.rename(
 								path + "/" + fileName, 
 								path + "/" + newName);
@@ -155,7 +155,7 @@ public class Tools {
 		String password = "ftpuser";
 //		String path = "/copyfiles/";
 		FTPClient ftpClient = FTPUtils.GetFTPClient(ftpHost, port, username, password);
-		File file = new File("C:/Users/Administrator/Desktop/À­ÈøÏîÄ¿À©Õ¹/ftpÖúÊÖ - Ïß³Ì°æ/ĞéÄâ»úlog/201709190936/errorlog.log");
+		File file = new File("C:/Users/Administrator/Desktop/æ‹‰è¨é¡¹ç›®æ‰©å±•/ftpåŠ©æ‰‹ - çº¿ç¨‹ç‰ˆ/è™šæ‹Ÿæœºlog/201709190936/errorlog.log");
 		ftpClient.storeFile(path + "/" + file.getName(), new FileInputStream(file));
 	}
 

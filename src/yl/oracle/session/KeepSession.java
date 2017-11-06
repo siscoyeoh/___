@@ -33,15 +33,15 @@ public class KeepSession {
 		}
 		finally {
 			try {
-				// ��һ������ļ�������رգ���Ϊ���رյĻ���Ӱ�����ܡ�����ռ����Դ
-				// ע��رյ�˳�����ʹ�õ����ȹر�
+				// 逐一将上面的几个对象关闭，因为不关闭的话会影响性能、并且占用资源
+				// 注意关闭的顺序，最后使用的最先关闭
 				if (rs != null)
 					rs.close();
 				if (ps != null)
 					ps.close();
 				if (conn != null)
 					conn.close();
-				System.out.println("���ݿ������ѹرգ�");
+				System.out.println("数据库连接已关闭！");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

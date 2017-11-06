@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="lib/commons-net-3.5.jar" sourcepath="E:/JavaDevTools/git_repository/mysrc/src">
+	<classpathentry kind="lib" path="lib/commons-net-3.5.jar" sourcepath="E:/JavaDevTools/java框架工具/commons-net-3.6-src.zip">
 		<attributes>
 			<attribute name="source_encoding" value="UTF-8"/>
 		</attributes>

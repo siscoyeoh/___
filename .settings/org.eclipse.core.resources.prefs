@@ -1,3 +1,17 @@
 eclipse.preferences.version=1
 encoding//src/yl/chart/TEST4.java=UTF-8
+encoding//src/yl/ftp/ChengduUtils.java=UTF-8
+encoding//src/yl/ftp/FTPUtils.java=UTF-8
+encoding//src/yl/ftp/LocalToFtps.java=UTF-8
+encoding//src/yl/ftp/ReadServerLogs.java=UTF-8
+encoding//src/yl/ftp/RemoteTest.java=UTF-8
+encoding//src/yl/ftp/Tools.java=UTF-8
 encoding//src/yl/io/Charset.java=UTF-8
+encoding//src/yl/jdbc/DBUtils.java=UTF-8
+encoding//src/yl/jdbc/MakeSession115.java=UTF-8
+encoding//src/yl/map/MapAppTest.java=UTF-8
+encoding//src/yl/oracle/session/KeepSession.java=UTF-8
+encoding//src/yl/poi/SuperOrSubScript2003.java=UTF-8
+encoding//src/yl/poi/TestSuperSub.java=UTF-8
+encoding//src/yl/poi/WordPdfUtils.java=UTF-8
+encoding//src/yl/reg/SummaryTime.java=UTF-8

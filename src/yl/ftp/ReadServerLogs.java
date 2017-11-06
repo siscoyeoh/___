@@ -24,13 +24,13 @@ public class ReadServerLogs {
 //			FTPFile folder = ftpClient.mlistFile("/server_logs");
 //			System.out.println(folder.isFile());
 //			System.out.println(folder.isDirectory());
-			// 读取文件列表
+			// 璇诲彇鏂囦欢鍒楄〃
 //			FTPFile[] logs = ftpClient.listFiles("/server_logs");
 //			for (int i = 0; i < logs.length; i++) {
 //				FTPFile log = logs[i];
 //				System.out.println(log.getName());
 //			}
-			// 读取一个文件的文本内容
+			// 璇诲彇涓�涓枃浠剁殑鏂囨湰鍐呭
 //			FTPFile file = ftpClient.mlistFile("/server_logs/20170929.txt");
 			InputStream is = ftpClient.retrieveFileStream("/server_logs/20170928.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(is, "utf-8"));

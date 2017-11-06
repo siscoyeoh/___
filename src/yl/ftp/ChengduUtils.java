@@ -1,33 +1,51 @@
 package yl.ftp;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
-
-public class FTPUtils {
+public class ChengduUtils {
 	
+	public static void main(String[]args) {
+		try {
+			FTPClient client = GetFTPClient();
+			String pathname = "/home/comm/awos/60.205.110.92";
+//			pathname = "/home/comm/awos/106.37.211.233";
+			FTPFile[] files = client.listFiles(pathname);
+			System.out.println("pathname:" + pathname + ", " + new Date());
+			for (int i = 0; i < files.length; i++) {
+				FTPFile file = files[i];
+				long lastModified = file.getTimestamp().getTimeInMillis();
+				System.out.println(file.getName() + ", " + lastModified + ", " + new Date(lastModified));
+			}
+			System.out.println(pathname + "文件个数:" + files.length);
+			try {
+				client.logout();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				client.disconnect();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
-	/**
-	 * 创建一个连接, 并: <font color="red">设置binary文件类型、utf-8编码、本地被动模式</font>
-	 * @param ftpHost
-	 * @param port
-	 * @param username
-	 * @param password
-	 * @return
-	 * @Author Yang Lin
-	 * @Date 2017年9月15日
-	 * @Time 下午12:09:29
-	 */
-	public static FTPClient GetFTPClient(String ftpHost, String port, String username,
-			String password) {
-		System.out.println(" ★ ftpHost:" + ftpHost);
-		System.out.println(" ★ port:" + port);
-		System.out.println(" ★ username:" + username);
-		System.out.println(" ★ password:" + password);
+	public static FTPClient GetFTPClient() {
+		String ftpHost = "";
+		String port = "21";
+		String username = "";
+		String password = "";
 		FTPClient ftpClient = null;
 		int portI = -1;
 		try {
@@ -52,13 +70,13 @@ public class FTPUtils {
 			
 			// 内部缓冲区大小
 			ftpClient.setBufferSize(256);
-			ftpClient.setDefaultTimeout(6000);
+			ftpClient.setDefaultTimeout(60 * 1000);
 			// 设置文件类型: 字节文件
 			ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 			// 需要再次设置utf-8编码,否则读取中文文件(夹)将出错
 			ftpClient.setControlEncoding("utf8");
 			// 设置本地被动: 每次传送文件前告诉服务器打开一个端口,以便客户端通过该端口传输数据
-			ftpClient.enterLocalPassiveMode();
+//			ftpClient.enterLocalPassiveMode();
 			
 		}
 //		catch (SocketException e) {

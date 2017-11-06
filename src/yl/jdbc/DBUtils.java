@@ -18,32 +18,32 @@ public class DBUtils {
 	public static Connection GetConn115_netmg() {
 		String jdbcdriver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@192.168.8.115:1521:ZULSTEST";
-		String username = "netmg";
-		String password = "netmg";
+		String username = "myshop";
+		String password = "123456";
 		return connect(jdbcdriver, url, username, password);
 	}
 
 	public static Connection connect(String jdbcdriver, String url,
 			String username, String password) {
-		Connection con = null;// ´´½¨Ò»¸öÊı¾İ¿âÁ¬½Ó
-		PreparedStatement pre = null;// ´´½¨Ô¤±àÒëÓï¾ä¶ÔÏó£¬Ò»°ã¶¼ÊÇÓÃÕâ¸ö¶ø²»ÓÃStatement
-		ResultSet result = null;// ´´½¨Ò»¸ö½á¹û¼¯¶ÔÏó
+		Connection con = null;// åˆ›å»ºä¸€ä¸ªæ•°æ®åº“è¿æ¥
+		PreparedStatement pre = null;// åˆ›å»ºé¢„ç¼–è¯‘è¯­å¥å¯¹è±¡ï¼Œä¸€èˆ¬éƒ½æ˜¯ç”¨è¿™ä¸ªè€Œä¸ç”¨Statement
+		ResultSet result = null;// åˆ›å»ºä¸€ä¸ªç»“æœé›†å¯¹è±¡
 		try {
-			Class.forName(jdbcdriver);// ¼ÓÔØOracleÇı¶¯³ÌĞò
-			System.out.println("¿ªÊ¼³¢ÊÔÁ¬½ÓÊı¾İ¿â£¡");
-//			String url = url;// 127.0.0.1ÊÇ±¾»úµØÖ·£¬XEÊÇ¾«¼ò°æOracleµÄÄ¬ÈÏÊı¾İ¿âÃû
-//			String username = "netmg";// ÓÃ»§Ãû,ÏµÍ³Ä¬ÈÏµÄÕË»§Ãû
-//			String password = "netmg";// Äã°²×°Ê±Ñ¡ÉèÖÃµÄÃÜÂë
-			con = DriverManager.getConnection(url, username, password);// »ñÈ¡Á¬½Ó
-			System.out.println("Á¬½Ó³É¹¦£¡");
+			Class.forName(jdbcdriver);// åŠ è½½Oracleé©±åŠ¨ç¨‹åº
+			System.out.println("å¼€å§‹å°è¯•è¿æ¥æ•°æ®åº“ï¼");
+//			String url = url;// 127.0.0.1æ˜¯æœ¬æœºåœ°å€ï¼ŒXEæ˜¯ç²¾ç®€ç‰ˆOracleçš„é»˜è®¤æ•°æ®åº“å
+//			String username = "netmg";// ç”¨æˆ·å,ç³»ç»Ÿé»˜è®¤çš„è´¦æˆ·å
+//			String password = "netmg";// ä½ å®‰è£…æ—¶é€‰è®¾ç½®çš„å¯†ç 
+			con = DriverManager.getConnection(url, username, password);// è·å–è¿æ¥
+			System.out.println("è¿æ¥æˆåŠŸï¼");
 			/*
 			 * String sql =
 			 * "SELECT * FROM NM_HIS_DATA2 WHERE GATHER_TIME = ?";//
-			 * Ô¤±àÒëÓï¾ä£¬¡°£¿¡±´ú±í²ÎÊı pre = con.prepareStatement(sql);// ÊµÀı»¯Ô¤±àÒëÓï¾ä
-			 * pre.setLong(1, 1507681808293L);// ÉèÖÃ²ÎÊı£¬Ç°ÃæµÄ1±íÊ¾²ÎÊıµÄË÷Òı£¬¶ø²»ÊÇ±íÖĞÁĞÃûµÄË÷Òı
-			 * result = pre.executeQuery();// Ö´ĞĞ²éÑ¯£¬×¢ÒâÀ¨ºÅÖĞ²»ĞèÒªÔÙ¼Ó²ÎÊı
+			 * é¢„ç¼–è¯‘è¯­å¥ï¼Œâ€œï¼Ÿâ€ä»£è¡¨å‚æ•° pre = con.prepareStatement(sql);// å®ä¾‹åŒ–é¢„ç¼–è¯‘è¯­å¥
+			 * pre.setLong(1, 1507681808293L);// è®¾ç½®å‚æ•°ï¼Œå‰é¢çš„1è¡¨ç¤ºå‚æ•°çš„ç´¢å¼•ï¼Œè€Œä¸æ˜¯è¡¨ä¸­åˆ—åçš„ç´¢å¼•
+			 * result = pre.executeQuery();// æ‰§è¡ŒæŸ¥è¯¢ï¼Œæ³¨æ„æ‹¬å·ä¸­ä¸éœ€è¦å†åŠ å‚æ•°
 			 * 
-			 * while (result.next()) { // µ±½á¹û¼¯²»Îª¿ÕÊ± System.out.println("IPµØÖ·:" +
+			 * while (result.next()) { // å½“ç»“æœé›†ä¸ä¸ºç©ºæ—¶ System.out.println("IPåœ°å€:" +
 			 * result.getString("AGENT_IP") + ", data_name:" +
 			 * result.getString("DATA_NAME") + ", data_value:" +
 			 * result.getString("DATA_VALUE")); }
@@ -60,15 +60,15 @@ public class DBUtils {
 		} 
 //		finally {
 //			try {
-//				// ÖğÒ»½«ÉÏÃæµÄ¼¸¸ö¶ÔÏó¹Ø±Õ£¬ÒòÎª²»¹Ø±ÕµÄ»°»áÓ°ÏìĞÔÄÜ¡¢²¢ÇÒÕ¼ÓÃ×ÊÔ´
-//				// ×¢Òâ¹Ø±ÕµÄË³Ğò£¬×îºóÊ¹ÓÃµÄ×îÏÈ¹Ø±Õ
+//				// é€ä¸€å°†ä¸Šé¢çš„å‡ ä¸ªå¯¹è±¡å…³é—­ï¼Œå› ä¸ºä¸å…³é—­çš„è¯ä¼šå½±å“æ€§èƒ½ã€å¹¶ä¸”å ç”¨èµ„æº
+//				// æ³¨æ„å…³é—­çš„é¡ºåºï¼Œæœ€åä½¿ç”¨çš„æœ€å…ˆå…³é—­
 //				if (result != null)
 //					result.close();
 //				if (pre != null)
 //					pre.close();
 //				if (con != null)
 //					con.close();
-//				System.out.println("Êı¾İ¿âÁ¬½ÓÒÑ¹Ø±Õ£¡");
+//				System.out.println("æ•°æ®åº“è¿æ¥å·²å…³é—­ï¼");
 //			} catch (Exception e) {
 //				e.printStackTrace();
 //			}

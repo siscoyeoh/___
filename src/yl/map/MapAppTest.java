@@ -16,7 +16,7 @@ public static void main(String[] args) {
    MapAppTest.likedHashMap();    
 }     
 public static void noOrder() {    
-   System.out.println("------ÎŞĞò£¨Ëæ»úÊä³ö------");    
+   System.out.println("------æ— åºï¼ˆéšæœºè¾“å‡º------");    
    Map map = new HashMap();    
    map.put("1", "Level 1");    
    map.put("2", "Level 2");    
@@ -31,9 +31,9 @@ public static void noOrder() {
       + e.getValue());    
    }    
 }     
-// ÓĞĞò(Ä¬ÈÏÅÅĞò£¬²»ÄÜÖ¸¶¨)    
+// æœ‰åº(é»˜è®¤æ’åºï¼Œä¸èƒ½æŒ‡å®š)    
 public static void hasOrder() {    
-   System.out.println("------ÓĞĞò£¨µ«ÊÇ°´Ä¬ÈÏË³³ä£¬²»ÄÜÖ¸¶¨£©------");    
+   System.out.println("------æœ‰åºï¼ˆä½†æ˜¯æŒ‰é»˜è®¤é¡ºå……ï¼Œä¸èƒ½æŒ‡å®šï¼‰------");    
    Map map = new TreeMap();    
    map.put("F", "Level F");    
    map.put("7", "Level 1");    
@@ -50,7 +50,7 @@ public static void hasOrder() {
    }    
 }     
 public static void likedHashMap() {    
-   System.out.println("------ÓĞĞò£¨¸ù¾İÊäÈëµÄË³ĞòÊä³ö£©------");    
+   System.out.println("------æœ‰åºï¼ˆæ ¹æ®è¾“å…¥çš„é¡ºåºè¾“å‡ºï¼‰------");    
    Map map = new LinkedHashMap();    
    map.put("F", "Level F");    
    map.put("7", "Level 1");    

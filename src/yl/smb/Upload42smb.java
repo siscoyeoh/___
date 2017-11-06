@@ -21,7 +21,7 @@ import jcifs.smb.SmbFile;
 
 public class Upload42smb {
 
-	private static int buffer_size = 256;
+	private static int buffer_size = 1024;
 	private static boolean deleteOldFile = false;
 	private static boolean loopit = false;
 	private static boolean sleepit = false;
@@ -35,19 +35,19 @@ public class Upload42smb {
 	public static void main(String[] args) {
 //		args = new String[] { "u", "2048" };
 //		args = new String[] { "p", "20171030" };
-//		do {
-//			doit(args);
-//			if (sleepit) {
-//				try {
-//					System.out.println("sleep......");
-//					Thread.sleep(10 * 60 * 1000L);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//		} while (loopit);
-		test();
+		do {
+			doit(args);
+			if (sleepit) {
+				try {
+					System.out.println("sleep......");
+					Thread.sleep(15 * 60 * 1000L);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} while (loopit);
+//		test();
 	}
 	
 	static void test() {
@@ -120,7 +120,7 @@ public class Upload42smb {
 			Date start = new Date();
 			if (args != null && args.length >= 1) {
 				String flag = args[0];
-				if ("u".equals(flag.toLowerCase())) deleteAndUpload();
+				if ("u".equals(flag.toLowerCase())) upload();
 				else if ("d".equals(flag.toLowerCase())) deleteOnly();
 				else if ("p".equals(flag.toLowerCase())) {
 					if (args.length > 1) {
@@ -173,7 +173,7 @@ public class Upload42smb {
 		deleteFiles(url, authentication);
 	}
 	
-	private static void deleteAndUpload() {
+	private static void upload() {
 		loopit = true;
 		sleepit = true;
 		try {
@@ -181,7 +181,7 @@ public class Upload42smb {
 			NtlmPasswordAuthentication authentication = 
 					new NtlmPasswordAuthentication(".", "pc66", "pc66");
 			// delete old files
-			if(deleteOldFile) deleteFiles(url, authentication);
+//			if(deleteOldFile) deleteFiles(url, authentication);
 			// 
 			File[] files = 
 					new File("C:/radardatas").listFiles();
@@ -196,9 +196,6 @@ public class Upload42smb {
 				SmbFile subFolder = new SmbFile(subFolderPath, authentication);
 				if (!subFolder.exists()) subFolder.mkdirs();
 				String remote = subFolder + fileName;
-//				InputStream in = new FileInputStream(file);
-//				OutputStream out = new SmbFile(remote, authentication).getOutputStream();
-//				transFile(file, new SmbFile(remote, authentication));
 				transFile(new FileInputStream(file),
 						new SmbFile(remote, authentication).getOutputStream());
 			}
@@ -215,51 +212,46 @@ public class Upload42smb {
 	
 	}
 	
-//	private static void transFile(File localFile, SmbFile newSmbFile) throws IOException {
-//
-//        int length = 2097152;
-//        @SuppressWarnings("resource")
-//		FileInputStream in = new FileInputStream(localFile);
-////		FileOutputStream out = (FileOutputStream) newSmbFile.getOutputStream();
-//        OutputStream out = newSmbFile.getOutputStream();
-//        FileChannel inC = in.getChannel();
-////        FileChannel outC = out.getChannel();
-//        WritableByteChannel outC = Channels.newChannel(out);
-//        while (true) {
-//            if(inC.position() == inC.size()) {
-//                inC.close();
-//                outC.close();
-//                break;
-//            }
-//            if ((inC.size() - inC.position()) < 20971520) {
-//            	length = (int) (inC.size() - inC.position());
-//            }
-//            else {
-//            	length = 20971520;
-//            }
-//            inC.transferTo(inC.position(), length, outC);
-//            inC.position(inC.position() + length);
-//        }
-//	}
-	private static void transFile(InputStream in, OutputStream out) throws IOException {
+	/** 方法内将关闭输入、输出流 */
+	private static void transFile(InputStream in, OutputStream out) {
         ReadableByteChannel src = Channels.newChannel(in);
         WritableByteChannel dest = Channels.newChannel(out);
-        final ByteBuffer buffer = ByteBuffer.allocateDirect(buffer_size);
-        while (src.read(buffer) != -1) {
-            // prepare the buffer to be drained
-            buffer.flip();
-            // write to the channel, may block
-            dest.write(buffer);
-            // If partial transfer, shift remainder down
-            // If buffer is empty, same as doing clear()
-            buffer.compact();
+        try {
+			final ByteBuffer buffer = ByteBuffer.allocateDirect(buffer_size);
+			while (src.read(buffer) != -1) {
+			    // prepare the buffer to be drained
+			    buffer.flip();
+			    // write to the channel, may block
+			    dest.write(buffer);
+			    // If partial transfer, shift remainder down
+			    // If buffer is empty, same as doing clear()
+			    buffer.compact();
+			}
+			// EOF will leave buffer in fill state
+			buffer.flip();
+			// make sure the buffer is fully drained.
+			while (buffer.hasRemaining()) {
+			    dest.write(buffer);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        finally {
+        	try {
+				in.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	try {
+				out.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
-        // EOF will leave buffer in fill state
-        buffer.flip();
-        // make sure the buffer is fully drained.
-        while (buffer.hasRemaining()) {
-            dest.write(buffer);
-        }
+        
 	}
 
 }

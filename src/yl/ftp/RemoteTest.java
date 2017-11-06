@@ -28,37 +28,46 @@ public class RemoteTest {
 		pathname = "/datas";
 		pathname = "/datas/yyyymmdd";
 		
+//		ftpHost = "";
+//		port = "21";
+//		username = "";
+//		password = "";
+//		pathname = "/SWC/awos/ERROR_FILES/20171030/";
+//		pathname = "/SWC/awos/ERROR_FILES/";
+//		pathname = "/SWC/awos/";
+//		pathname = "/datas/yyyymmdd";
+		
 		displayFiles(ftpHost, port, username, password, pathname);
 //		downloadBacklogFiles(ftpHost, port, username, password, pathname);
 		
 	}
 
-	/** ÏÂÔØ»ıÑ¹ÎÄ¼ş */
+	/** ä¸‹è½½ç§¯å‹æ–‡ä»¶ */
 	private static void downloadBacklogFiles(String ftpHost, String port,
 			String username, String password, String pathname) {
-//		AWOS201710300158.UKD, 1509300660000, ÎÄ¼ş
-//		AWOS201710300201.UKD, 1509300660000, ÎÄ¼ş
-//		AWOS201710300313.UKD, 1509305160000, ÎÄ¼ş
-//		AWOS201710300314.UKD, 1509305220000, ÎÄ¼ş
-//		AWOS201710300315.UKD, 1509305220000, ÎÄ¼ş
-//		AWOS201710300316.UKD, 1509305160000, ÎÄ¼ş
-//		AWOS201710300350.UKD, 1509307260000, ÎÄ¼ş
-//		AWOS201710300449.UKD, 1509310920000, ÎÄ¼ş
-//		AWOS201710300451.UKD, 1509310860000, ÎÄ¼ş
-//		AWOS201710300453.UKD, 1509311160000, ÎÄ¼ş
-//		AWOS201710300454.UKD, 1509311160000, ÎÄ¼ş
-//		AWOS201710300456.UKD, 1509311160000, ÎÄ¼ş
+//		AWOS201710300158.UKD, 1509300660000, æ–‡ä»¶
+//		AWOS201710300201.UKD, 1509300660000, æ–‡ä»¶
+//		AWOS201710300313.UKD, 1509305160000, æ–‡ä»¶
+//		AWOS201710300314.UKD, 1509305220000, æ–‡ä»¶
+//		AWOS201710300315.UKD, 1509305220000, æ–‡ä»¶
+//		AWOS201710300316.UKD, 1509305160000, æ–‡ä»¶
+//		AWOS201710300350.UKD, 1509307260000, æ–‡ä»¶
+//		AWOS201710300449.UKD, 1509310920000, æ–‡ä»¶
+//		AWOS201710300451.UKD, 1509310860000, æ–‡ä»¶
+//		AWOS201710300453.UKD, 1509311160000, æ–‡ä»¶
+//		AWOS201710300454.UKD, 1509311160000, æ–‡ä»¶
+//		AWOS201710300456.UKD, 1509311160000, æ–‡ä»¶
 		String fileName = "AWOS201710300449.UKD";
 //		fileName = "awosError.log";
 		FTPClient client = null;
 		try {
 			client = FTPUtils.GetFTPClient(ftpHost, port, username, password);
-			System.out.println("Á¬½ÓÊÇ·ñ¿ÉÓÃ:" + 
+			System.out.println("è¿æ¥æ˜¯å¦å¯ç”¨:" + 
 					client.isAvailable() + ", " + new Date());
 			InputStream in = client.retrieveFileStream(pathname + "/" + fileName);
 			OutputStream out = new FileOutputStream(new File("C:/backlogFiles/" + fileName));
 			StreamCopy(in, out);
-//			System.out.println("ÏÂÔØ»ıÑ¹ÎÄ¼ş¸öÊı:" + backlogFiles.size());
+//			System.out.println("ä¸‹è½½ç§¯å‹æ–‡ä»¶ä¸ªæ•°:" + backlogFiles.size());
 		} 
 		catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -87,15 +96,15 @@ public class RemoteTest {
 		FTPClient client = null;
 		try {
 			client = FTPUtils.GetFTPClient(ftpHost, port, username, password);
-			System.out.println("Á¬½ÓÊÇ·ñ¿ÉÓÃ:" + 
+			System.out.println("è¿æ¥æ˜¯å¦å¯ç”¨:" + 
 					client.isAvailable() + ", " + new Date());
 			FTPFile[] files = client.listFiles(pathname);
 			for (int index = 0; index < files.length; index++) {
 				System.out.println(files[index].getName() + ", " + 
 						files[index].getTimestamp().getTimeInMillis() + ", " +
-						(files[index].isFile() ? "ÎÄ¼ş" : (files[index].isDirectory() ? "ÎÄ¼ş¼Ğ" : "Î´Öª")));
+						(files[index].isFile() ? "æ–‡ä»¶" : (files[index].isDirectory() ? "æ–‡ä»¶å¤¹" : "æœªçŸ¥")));
 			}
-			System.out.println("ÎÄ¼ş¸öÊı:" + files.length);
+			System.out.println("æ–‡ä»¶ä¸ªæ•°:" + files.length);
 		} 
 		catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -121,7 +130,7 @@ public class RemoteTest {
 	
 	private static void StreamCopy(InputStream is, OutputStream os) {
 		try {
-			// ÎÄ¼ş¿½±´
+			// æ–‡ä»¶æ‹·è´
 			byte flush[] = new byte[1024];
 			int len = 0;
 			while (0 <= (len = is.read(flush))) {
@@ -132,7 +141,7 @@ public class RemoteTest {
 		}
 		finally {
 			try {
-				// ¹Ø±ÕÁ÷µÄ×¢Òâ ÏÈ´ò¿ªµÄºó¹Ø
+				// å…³é—­æµçš„æ³¨æ„ å…ˆæ‰“å¼€çš„åå…³
 				if (os != null) {
 					os.close();
 				}

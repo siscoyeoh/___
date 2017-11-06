@@ -25,8 +25,8 @@ public class SummaryTime {
 	}
 	
 	static void match(String content) {
-		String regex = "[^0-9][0-9][0-9][0-9][^0-9]"; // 3Î»Ê±¼ä
-		String regex2 = "[(](0-9){1,2}[:](0-9){1,2}[)][0-9][0-9][0-9][^0-9]"; // Ç°ÃæµÄÀ¨»¡ÄÚ²»º¬:
+		String regex = "[^0-9][0-9][0-9][0-9][^0-9]"; // 3ä½æ—¶é—´
+		String regex2 = "[(](0-9){1,2}[:](0-9){1,2}[)][0-9][0-9][0-9][^0-9]"; // å‰é¢çš„æ‹¬å¼§å†…ä¸å«:
 		regex = "[0-9][:][^0-9]{1,6}[0-9]";
 //		String content = "ff133gg";
 		String temp = content.split("\t")[3];
@@ -58,10 +58,10 @@ public class SummaryTime {
 				!(temp.startsWith("--RA") || 
 						temp.startsWith("--SHRA") ||
 						temp.startsWith("--SN"))) {
-			// ¡ª
-			System.out.println(content); // f£ß£­£­¡ª£­¡¡¡ª
+			// â€”
+			System.out.println(content); // fï¼¿ï¼ï¼â€”ï¼ã€€â€”
 		}
-//		System.out.println("¡ª".equals("¡ª"));
+//		System.out.println("â€”".equals("â€”"));
 //		Pattern pattern = Pattern.compile(regex);
 //		Matcher matcher = pattern.matcher(content);
 //		if (matcher.find()) {

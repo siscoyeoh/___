@@ -23,57 +23,57 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
 /**
- * ÍõÑÇ½Ü×÷Æ·
+ * ç‹äºšæ°ä½œå“
  * 
  * @Author Yang Lin
- * @Date 2017Äê9ÔÂ18ÈÕ
- * @Time ÏÂÎç1:15:17
+ * @Date 2017å¹´9æœˆ18æ—¥
+ * @Time ä¸‹åˆ1:15:17
  */
 @SuppressWarnings(value = "unchecked")
 public class LocalToFtps extends Thread {
 
 	/**
-	 * ¶¨ÒåÅäÖÃÎÄ¼ş»ù´¡ÁĞÊı ¡¾No;;State;;FTPUserName;;FTPUserPassword;;IPAdress;;FilePath;;
-	 * DestinationPath¡¿ ¡¾1;;1;;1;;1;;1.1.1.1;;1;1¡¿
+	 * å®šä¹‰é…ç½®æ–‡ä»¶åŸºç¡€åˆ—æ•° ã€No;;State;;FTPUserName;;FTPUserPassword;;IPAdress;;FilePath;;
+	 * DestinationPathã€‘ ã€1;;1;;1;;1;;1.1.1.1;;1;1ã€‘
 	 * */
 	public static int BasicsColumn = 24;
 
 	/**
-	 * ¶¨ÒåÅäÖÃÎÄ¼ş»ù´¡ÔªËØ¸öÊı
+	 * å®šä¹‰é…ç½®æ–‡ä»¶åŸºç¡€å…ƒç´ ä¸ªæ•°
 	 * */
 	public static int BasicsElements = 7;
 
 	/**
-	 * ¶¨Òå¸÷ÔªËØ¼äµÄ¼ä¸ô·ûºÅ
+	 * å®šä¹‰å„å…ƒç´ é—´çš„é—´éš”ç¬¦å·
 	 * */
 	public static String BaseInterval = ";;";
 
 	/**
-	 * ¶¨ÒåÅäÖÃÎÄ¼şÂ·¾¶
+	 * å®šä¹‰é…ç½®æ–‡ä»¶è·¯å¾„
 	 * */
 	// public static String ConfigFilePath = "D:\\L2FTPS_TESTa\\xnet\\config\\fip.conf";
 	// public static String ConfigFilePath = "/home/mhdbs/xnet/config/fip.conf";
 	public static String ConfigFilePath = "fip.conf";
 
 	/**
-	 * ¶¨ÒåĞİÃßÊ±¼ä,1000ºÁÃë X 60Ãë X 1·ÖÖÓ;
+	 * å®šä¹‰ä¼‘çœ æ—¶é—´,1000æ¯«ç§’ X 60ç§’ X 1åˆ†é’Ÿ;
 	 * */
 	public static int sleepTime = 1000 * 10;
 
 	/**
-	 * ´«ÊäºóÒªÉ¾³ıµÄÎÄ¼şÃû³Æ
+	 * ä¼ è¾“åè¦åˆ é™¤çš„æ–‡ä»¶åç§°
 	 * */
 	public static ArrayList list = new ArrayList();
 
 	public static void main(String[] args) {
 		ArrayList line = readTxtFile(ConfigFilePath);
-		// lineOne ¼´ ÅäÖÃÎÄ¼şµÄÊı×é
-		String[] lineOne = new String[line.size()];// Ã¿Ò»ĞĞµÄÅäÖÃĞÅÏ¢µÄÊı×é
+		// lineOne å³ é…ç½®æ–‡ä»¶çš„æ•°ç»„
+		String[] lineOne = new String[line.size()];// æ¯ä¸€è¡Œçš„é…ç½®ä¿¡æ¯çš„æ•°ç»„
 		for (int i = 0; i < line.size(); i++) {
 			lineOne[i] = (String) line.get(i);
 		}
 
-		// ½«Ò»Î¬Êı×é²ğ³É¶şÎ¬Êı×é
+		// å°†ä¸€ç»´æ•°ç»„æ‹†æˆäºŒç»´æ•°ç»„
 		String[][] lineOF = getStringS(lineOne, line.size());
 
 		// for (int i = 0; i < lineOF.length; i++) {
@@ -83,27 +83,27 @@ public class LocalToFtps extends Thread {
 		// }
 		// }
 
-		// ½«¶şÎ¬Êı×é´æÈë
+		// å°†äºŒç»´æ•°ç»„å­˜å…¥
 
-		// ÎªÃ¿¸ö¶şÎ¬Êı×é·ÖÅäĞÂµÄÏß³Ì
+		// ä¸ºæ¯ä¸ªäºŒç»´æ•°ç»„åˆ†é…æ–°çš„çº¿ç¨‹
 		for (int i = 0; i < lineOF.length; i++) {
-			// ·ÖÅäÏß³Ì
+			// åˆ†é…çº¿ç¨‹
 			new LocalToFtps(lineOF).start();
 		}
 
 	}
 
 	/**
-	 * ¶ÁÈ¡TXTÎÄ¼ş
+	 * è¯»å–TXTæ–‡ä»¶
 	 * */
 	public static ArrayList readTxtFile(String filePath) {
 		ArrayList lineOne = new ArrayList();
 		try {
 			String encoding = "GBK";
 			File file = new File(filePath);
-			if (file.isFile() && file.exists()) { // ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+			if (file.isFile() && file.exists()) { // åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 				InputStreamReader read = new InputStreamReader(
-						new FileInputStream(file), encoding);// ¿¼ÂÇµ½±àÂë¸ñÊ½
+						new FileInputStream(file), encoding);// è€ƒè™‘åˆ°ç¼–ç æ ¼å¼
 				BufferedReader bufferedReader = new BufferedReader(read);
 				String lineTxt = null;
 
@@ -116,17 +116,17 @@ public class LocalToFtps extends Thread {
 				}
 				read.close();
 			} else {
-				System.err.println("ÕÒ²»µ½Ö¸¶¨µÄÎÄ¼ş");
+				System.err.println("æ‰¾ä¸åˆ°æŒ‡å®šçš„æ–‡ä»¶");
 			}
 		} catch (Exception e) {
-			System.err.println("¶ÁÈ¡ÎÄ¼şÄÚÈİ³ö´í");
+			System.err.println("è¯»å–æ–‡ä»¶å†…å®¹å‡ºé”™");
 			e.printStackTrace();
 		}
 		return lineOne;
 	}
 
 	/**
-	 * ½«Ò»Î¬Êı×é²ğ³É¶şÎ¬Êı×é
+	 * å°†ä¸€ç»´æ•°ç»„æ‹†æˆäºŒç»´æ•°ç»„
 	 * */
 	public static String[][] getStringS(String[] lineOne_, int count) {
 		String[][] line = new String[count][BasicsElements];
@@ -140,7 +140,7 @@ public class LocalToFtps extends Thread {
 	private static int j = 0;
 
 	/**
-	 * »ñµÃ¶şÎ¬Êı×éÖĞµÄÒ»Î¬Êı×é
+	 * è·å¾—äºŒç»´æ•°ç»„ä¸­çš„ä¸€ç»´æ•°ç»„
 	 * */
 	public synchronized String[] getOne(String[][] b) {
 		String[] c = b[j];
@@ -164,7 +164,7 @@ public class LocalToFtps extends Thread {
 		try {
 			int i = 0;
 			while (true) {
-				// Çå¿ÕÔ´ÎÄ¼şµÄlist
+				// æ¸…ç©ºæºæ–‡ä»¶çš„list
 				list.clear();
 				createFile(line);
 
@@ -175,11 +175,11 @@ public class LocalToFtps extends Thread {
 
 				long endTime = System.currentTimeMillis();
 				String EndTime = stampToDate(endTime);
-				System.err.println("³ÌĞò¿ªÊ¼Ê±¼ä£º" + StartTime);
-				System.err.println("³ÌĞò½áÊøÊ±¼ä£º" + EndTime);
-				System.err.println("³ÌĞòÔËĞĞÊ±¼ä£º " + (endTime - startTime) + "ms");
+				System.err.println("ç¨‹åºå¼€å§‹æ—¶é—´ï¼š" + StartTime);
+				System.err.println("ç¨‹åºç»“æŸæ—¶é—´ï¼š" + EndTime);
+				System.err.println("ç¨‹åºè¿è¡Œæ—¶é—´ï¼š " + (endTime - startTime) + "ms");
 
-				// É¾³ıÔ´ÎÄ¼ş
+				// åˆ é™¤æºæ–‡ä»¶
 				for (int j = 0; j < list.size(); j++) {
 					String a = String.valueOf(list.get(j));
 					System.out.println("a =" + a);
@@ -187,7 +187,7 @@ public class LocalToFtps extends Thread {
 				}
 				// DeleteSourceFile(line);
 				i++;
-				System.err.println(Thread.currentThread().getName() + "ÔËĞĞ´ÎÊıÎª"
+				System.err.println(Thread.currentThread().getName() + "è¿è¡Œæ¬¡æ•°ä¸º"
 						+ i);
 
 				Thread.currentThread().sleep(sleepTime);
@@ -200,21 +200,21 @@ public class LocalToFtps extends Thread {
 	}
 
 	/**
-	 * ½«Ê±¼ä´Á×ª»»ÎªÊ±¼ä
+	 * å°†æ—¶é—´æˆ³è½¬æ¢ä¸ºæ—¶é—´
 	 */
 	public static String stampToDate(long lt) {
 		String res;
 		// SimpleDateFormat simpleDateFormat = new
 		// SimpleDateFormat("yyyy-MM-dd-HH-mm");
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"yyyyÄêMMÔÂddÈÕHHÊ±mm·ÖssÃëSSºÁÃë");
+				"yyyyå¹´MMæœˆddæ—¥HHæ—¶mmåˆ†ssç§’SSæ¯«ç§’");
 		Date date = new Date(lt);
 		res = simpleDateFormat.format(date);
 		return res;
 	}
 
 	/**
-	 * ½«Ô´ÎÄ¼ş·ÅÈë¶ÔÓ¦IPÎÄ¼ş¼ĞÄÚ²¢ÉÏ´«µ½ÏàÓ¦IPµØÖ·µÄFTP·şÎñÆ÷
+	 * å°†æºæ–‡ä»¶æ”¾å…¥å¯¹åº”IPæ–‡ä»¶å¤¹å†…å¹¶ä¸Šä¼ åˆ°ç›¸åº”IPåœ°å€çš„FTPæœåŠ¡å™¨
 	 * */
 	public static Runnable readsend(String[] lineOne)
 			throws FileNotFoundException, ParseException {
@@ -232,13 +232,13 @@ public class LocalToFtps extends Thread {
 			UserName = lineOne[2];
 			UserPassword = lineOne[3];
 			IPAdress = lineOne[4];
-			FilePath = lineOne[5] + "/" + lineOne[4];// ½«Ô´ÎÄ¼şµØÖ·¸ü¸ÄÎª¶ÔÓ¦µÄIPµØÖ·ÎÄ¼ş¼ĞÄÚµÄÎÄ¼şµØÖ·
+			FilePath = lineOne[5] + "/" + lineOne[4];// å°†æºæ–‡ä»¶åœ°å€æ›´æ”¹ä¸ºå¯¹åº”çš„IPåœ°å€æ–‡ä»¶å¤¹å†…çš„æ–‡ä»¶åœ°å€
 			DestinationPath = lineOne[6];
 		}
 		if (No != null && State != null && IPAdress != null && FilePath != null
 				&& DestinationPath != null) {
 			if (State.equals("1")) {
-				System.out.println(No + "×´Ì¬Îª¡¾ÆôÓÃ¡¿!");
+				System.out.println(No + "çŠ¶æ€ä¸ºã€å¯ç”¨ã€‘!");
 
 				Vector<File> vecFile = new Vector<File>();
 				recursion(FilePath, vecFile);
@@ -247,66 +247,66 @@ public class LocalToFtps extends Thread {
 					String filename = file.getName();
 					String filePath = file.getPath();
 					long lastTime = file.lastModified();
-					System.out.println("ÎÄ¼şÃûÎª£º" + filename);
-					System.out.println("ÎÄ¼şÎ»ÖÃÎª£º" + filePath);
+					System.out.println("æ–‡ä»¶åä¸ºï¼š" + filename);
+					System.out.println("æ–‡ä»¶ä½ç½®ä¸ºï¼š" + filePath);
 
-					// ½«ÎÄ¼ş¼ĞµÄĞŞ¸ÄÊ±¼äµÄÊ±¼ä´Á×ª»»Îª±±¾©Ê±¼ä
+					// å°†æ–‡ä»¶å¤¹çš„ä¿®æ”¹æ—¶é—´çš„æ—¶é—´æˆ³è½¬æ¢ä¸ºåŒ—äº¬æ—¶é—´
 					String last = stampToDate(lastTime);
-					System.out.println(filename + "ÎÄ¼ş×îºóĞŞ¸ÄÈÕÆÚÎª£º" + last);
+					System.out.println(filename + "æ–‡ä»¶æœ€åä¿®æ”¹æ—¥æœŸä¸ºï¼š" + last);
 					String time = Judgement_time(last);
-					// Èç¹û×îºóĞŞ¸ÄÊ±¼äÎªµ±Ç°ÏµÍ³Ê±¼äÖ®ºóµÄÊ±¼ä£¬Ôò°´ÕÕ¡¾½ñÌì¡¿À´´¦Àí£¬¼´ÉÏ´«ÎÄ¼ş
-					if (time.contains("½ñÌì")) {
-						// ½ñÌìµÄ£¬ÒªÉÏ´«
+					// å¦‚æœæœ€åä¿®æ”¹æ—¶é—´ä¸ºå½“å‰ç³»ç»Ÿæ—¶é—´ä¹‹åçš„æ—¶é—´ï¼Œåˆ™æŒ‰ç…§ã€ä»Šå¤©ã€‘æ¥å¤„ç†ï¼Œå³ä¸Šä¼ æ–‡ä»¶
+					if (time.contains("ä»Šå¤©")) {
+						// ä»Šå¤©çš„ï¼Œè¦ä¸Šä¼ 
 						InputStream input = new FileInputStream(filePath);
 						uploadFile(IPAdress, UserName, UserPassword,
 								DestinationPath, filename, input);
-						// ÉÏ´«Íê±Ïºó£¬½«ÏàÓ¦IPµØÖ·ÎªÃûµÄÎÄ¼ş¼ĞÉ¾³ı£¡
-						System.err.println("ÉÏ´«Íê±Ïºó½«ÒªÉ¾³ıµÄÎÄ¼şÃûÎª£º" + filePath);
+						// ä¸Šä¼ å®Œæ¯•åï¼Œå°†ç›¸åº”IPåœ°å€ä¸ºåçš„æ–‡ä»¶å¤¹åˆ é™¤ï¼
+						System.err.println("ä¸Šä¼ å®Œæ¯•åå°†è¦åˆ é™¤çš„æ–‡ä»¶åä¸ºï¼š" + filePath);
 						deleteFile(filePath);
 					} else {
-						if (time.contains("×òÌì")) {
-							// ×òÌìµÄ£¬²»¹Ü
-							System.out.println(filename + "ÎÄ¼şÎª×òÌìµÄ£¬²»´¦Àí£¡");
+						if (time.contains("æ˜¨å¤©")) {
+							// æ˜¨å¤©çš„ï¼Œä¸ç®¡
+							System.out.println(filename + "æ–‡ä»¶ä¸ºæ˜¨å¤©çš„ï¼Œä¸å¤„ç†ï¼");
 							continue;
 						} else {
-							// ÆäËûÊ±¼ä£¬É¾³ı
-							System.err.println(filename + "ÎÄ¼şÎª×òÌìÖ®Ç°µÄ£¬×¼±¸É¾³ı£¡");
+							// å…¶ä»–æ—¶é—´ï¼Œåˆ é™¤
+							System.err.println(filename + "æ–‡ä»¶ä¸ºæ˜¨å¤©ä¹‹å‰çš„ï¼Œå‡†å¤‡åˆ é™¤ï¼");
 							deleteFile(filePath);
 						}
 					}
 				}
 			} else {
-				System.err.println("ÅäÖÃ±àºÅÎª£º" + No + "µÄ×´Ì¬Îª¡¾²»ÆôÓÃ¡¿!");
+				System.err.println("é…ç½®ç¼–å·ä¸ºï¼š" + No + "çš„çŠ¶æ€ä¸ºã€ä¸å¯ç”¨ã€‘!");
 			}
 		} else {
 			System.err
-					.println("Çë¼ì²é£º¡¾ĞòºÅ¡¿¡¢¡¾×´Ì¬¡¿¡¢¡¾FTPÓÃ»§Ãû¡¿¡¢¡¾FTPÓÃ»§ÃÜÂë¡¿¡¢¡¾IPµØÖ·¡¿¡¢¡¾Ô´ÎÄ¼şµØÖ·¡¿¡¢¡¾ÉÏ´«ÎÄ¼şÄ¿µÄµØÖ·¡¿ÊÇ·ñÓĞ¿ÕÈ±£¬ÇÒÖĞ¼ä¼ä¸ôÎª¡¾"
-							+ BaseInterval + "¡¿");
+					.println("è¯·æ£€æŸ¥ï¼šã€åºå·ã€‘ã€ã€çŠ¶æ€ã€‘ã€ã€FTPç”¨æˆ·åã€‘ã€ã€FTPç”¨æˆ·å¯†ç ã€‘ã€ã€IPåœ°å€ã€‘ã€ã€æºæ–‡ä»¶åœ°å€ã€‘ã€ã€ä¸Šä¼ æ–‡ä»¶ç›®çš„åœ°å€ã€‘æ˜¯å¦æœ‰ç©ºç¼ºï¼Œä¸”ä¸­é—´é—´éš”ä¸ºã€"
+							+ BaseInterval + "ã€‘");
 		}
 		return null;
 
 	}
 
 	/**
-	 * Description: ÏòFTP·şÎñÆ÷ÉÏ´«ÎÄ¼ş
+	 * Description: å‘FTPæœåŠ¡å™¨ä¸Šä¼ æ–‡ä»¶
 	 * 
 	 * @param host
-	 *            FTP·şÎñÆ÷hostname
+	 *            FTPæœåŠ¡å™¨hostname
 	 * @param port
-	 *            FTP·şÎñÆ÷¶Ë¿Ú
+	 *            FTPæœåŠ¡å™¨ç«¯å£
 	 * @param username
-	 *            FTPµÇÂ¼ÕËºÅ
+	 *            FTPç™»å½•è´¦å·
 	 * @param password
-	 *            FTPµÇÂ¼ÃÜÂë
+	 *            FTPç™»å½•å¯†ç 
 	 * @param basePath
-	 *            FTP·şÎñÆ÷»ù´¡Ä¿Â¼
+	 *            FTPæœåŠ¡å™¨åŸºç¡€ç›®å½•
 	 * @param filePath
-	 *            FTP·şÎñÆ÷ÎÄ¼ş´æ·ÅÂ·¾¶¡£ÀıÈç·ÖÈÕÆÚ´æ·Å£º/2015/01/01¡£ÎÄ¼şµÄÂ·¾¶ÎªbasePath+filePath
+	 *            FTPæœåŠ¡å™¨æ–‡ä»¶å­˜æ”¾è·¯å¾„ã€‚ä¾‹å¦‚åˆ†æ—¥æœŸå­˜æ”¾ï¼š/2015/01/01ã€‚æ–‡ä»¶çš„è·¯å¾„ä¸ºbasePath+filePath
 	 * @param filename
-	 *            ÉÏ´«µ½FTP·şÎñÆ÷ÉÏµÄÎÄ¼şÃû
+	 *            ä¸Šä¼ åˆ°FTPæœåŠ¡å™¨ä¸Šçš„æ–‡ä»¶å
 	 * @param input
-	 *            ÊäÈëÁ÷
-	 * @return ³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+	 *            è¾“å…¥æµ
+	 * @return æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
 	 */
 	public static boolean uploadFile(String host, String username,
 			String password, String basePath, String filename, InputStream input) {
@@ -314,27 +314,27 @@ public class LocalToFtps extends Thread {
 		FTPClient ftp = new FTPClient();
 		try {
 			int reply;
-			ftp.connect(host);// Á¬½ÓFTP·şÎñÆ÷
-			// Èç¹û²ÉÓÃÄ¬ÈÏ¶Ë¿Ú£¬¿ÉÒÔÊ¹ÓÃftp.connect(host)µÄ·½Ê½Ö±½ÓÁ¬½ÓFTP·şÎñÆ÷
-			ftp.login(username, password);// µÇÂ¼
+			ftp.connect(host);// è¿æ¥FTPæœåŠ¡å™¨
+			// å¦‚æœé‡‡ç”¨é»˜è®¤ç«¯å£ï¼Œå¯ä»¥ä½¿ç”¨ftp.connect(host)çš„æ–¹å¼ç›´æ¥è¿æ¥FTPæœåŠ¡å™¨
+			ftp.login(username, password);// ç™»å½•
 			reply = ftp.getReplyCode();
 			if (!FTPReply.isPositiveCompletion(reply)) {
 				ftp.disconnect();
 				return result;
 			}
-			System.out.println("ÉÏ´«µ½FTP·şÎñÆ÷µÄÄ¿Â¼ =" + basePath);
-			// ÇĞ»»µ½ÉÏ´«Ä¿Â¼
+			System.out.println("ä¸Šä¼ åˆ°FTPæœåŠ¡å™¨çš„ç›®å½• =" + basePath);
+			// åˆ‡æ¢åˆ°ä¸Šä¼ ç›®å½•
 			if (!ftp.changeWorkingDirectory(basePath)) {
 			}
-			ftp.makeDirectory(basePath);// ´´½¨Ä¿Â¼×ÜÊÇ²»³É¹¦
-			ftp.changeWorkingDirectory(basePath);// ÇĞ»»Ä¿Â¼×ÜÊÇ²»³É¹¦
-			// ÉèÖÃÉÏ´«ÎÄ¼şµÄÀàĞÍÎª¶ş½øÖÆÀàĞÍ
+			ftp.makeDirectory(basePath);// åˆ›å»ºç›®å½•æ€»æ˜¯ä¸æˆåŠŸ
+			ftp.changeWorkingDirectory(basePath);// åˆ‡æ¢ç›®å½•æ€»æ˜¯ä¸æˆåŠŸ
+			// è®¾ç½®ä¸Šä¼ æ–‡ä»¶çš„ç±»å‹ä¸ºäºŒè¿›åˆ¶ç±»å‹
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
-			// ÉÏ´«ÎÄ¼ş
+			// ä¸Šä¼ æ–‡ä»¶
 			ftp.storeFile(filename, input);
 			input.close();
 			ftp.logout();
-			System.out.println(host + "ÍË³öµÇÂ½£¡£¡£¡£¡");
+			System.out.println(host + "é€€å‡ºç™»é™†ï¼ï¼ï¼ï¼");
 			result = true;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -350,38 +350,38 @@ public class LocalToFtps extends Thread {
 	}
 
 	/**
-	 * É¾³ıµ¥¸öÎÄ¼ş
+	 * åˆ é™¤å•ä¸ªæ–‡ä»¶
 	 * 
-	 * @param sPath±»É¾³ıÎÄ¼şµÄÎÄ¼şÃû
-	 *            (´øµØÖ·)
-	 * @return µ¥¸öÎÄ¼şÉ¾³ı³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+	 * @param sPathè¢«åˆ é™¤æ–‡ä»¶çš„æ–‡ä»¶å
+	 *            (å¸¦åœ°å€)
+	 * @return å•ä¸ªæ–‡ä»¶åˆ é™¤æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
 	 */
 	public static boolean deleteFile(String sPath) {
 		boolean flag = false;
 		File file = new File(sPath);
-		// Â·¾¶ÎªÎÄ¼şÇÒ²»Îª¿ÕÔò½øĞĞÉ¾³ı
+		// è·¯å¾„ä¸ºæ–‡ä»¶ä¸”ä¸ä¸ºç©ºåˆ™è¿›è¡Œåˆ é™¤
 		if (file.isFile() && file.exists()) {
 			file.delete();
 			flag = true;
-			System.out.println(sPath + "É¾³ı³É¹¦£¡");
+			System.out.println(sPath + "åˆ é™¤æˆåŠŸï¼");
 		} else {
-			System.out.println(sPath + "É¾³ıÊ§°Ü£¡");
+			System.out.println(sPath + "åˆ é™¤å¤±è´¥ï¼");
 		}
 		return flag;
 	}
 
 	/**
-	 * ÅĞ¶ÏÊ±¼äÊÇ·ñ·ûºÏ£¬½öÅĞ¶Ï³ö¡¾½ñÌì¼°Ö®ºóµÄÈÕÆÚ¡¿¡¢¡¾×òÌì¡¿¡¢¡¾Ç°Ìì¼°Ö®Ç°µÄÈÕÆÚ¡¿·½±ã½øĞĞ²Ù×÷
+	 * åˆ¤æ–­æ—¶é—´æ˜¯å¦ç¬¦åˆï¼Œä»…åˆ¤æ–­å‡ºã€ä»Šå¤©åŠä¹‹åçš„æ—¥æœŸã€‘ã€ã€æ˜¨å¤©ã€‘ã€ã€å‰å¤©åŠä¹‹å‰çš„æ—¥æœŸã€‘æ–¹ä¾¿è¿›è¡Œæ“ä½œ
 	 * */
 	public static String Judgement_time(String last) throws ParseException {
 
 		SimpleDateFormat formatter = new SimpleDateFormat(
-				"yyyyÄêMMÔÂddÈÕHHÊ±mm·ÖssÃëSSºÁÃë");
+				"yyyyå¹´MMæœˆddæ—¥HHæ—¶mmåˆ†ssç§’SSæ¯«ç§’");
 		Date date = formatter.parse(last);
 
-		String todySDF = "½ñÌì HH:mm";
-		String yesterDaySDF = "×òÌì HH:mm";
-		String otherSDF = "MÔÂdÈÕ HH:mm";
+		String todySDF = "ä»Šå¤© HH:mm";
+		String yesterDaySDF = "æ˜¨å¤© HH:mm";
+		String otherSDF = "Mæœˆdæ—¥ HH:mm";
 		SimpleDateFormat sfd = null;
 		String time = "";
 		Calendar dateCalendar = Calendar.getInstance();
@@ -409,7 +409,7 @@ public class LocalToFtps extends Thread {
 	}
 
 	/**
-	 * ½«ÎÄ¼şÂ·¾¶ÏÂµÄËùÓĞÎÄ¼ş´æÈëÎÄ¼şÁĞ±íÖĞ
+	 * å°†æ–‡ä»¶è·¯å¾„ä¸‹çš„æ‰€æœ‰æ–‡ä»¶å­˜å…¥æ–‡ä»¶åˆ—è¡¨ä¸­
 	 * */
 	public static void recursion(String FilePath, Vector<File> vecFile) {
 		File file = new File(FilePath);
@@ -423,7 +423,7 @@ public class LocalToFtps extends Thread {
 	}
 
 	/**
-	 * ¸ù¾İIPµØÖ·£¬Éú³ÉÒÔIPµØÖ·ÎªÃûµÄÎÄ¼ş¼Ğ ²¢½«ÎÄ¼ş¸´ÖÆµ½ÎÄ¼ş¼ĞÄÚ
+	 * æ ¹æ®IPåœ°å€ï¼Œç”Ÿæˆä»¥IPåœ°å€ä¸ºåçš„æ–‡ä»¶å¤¹ å¹¶å°†æ–‡ä»¶å¤åˆ¶åˆ°æ–‡ä»¶å¤¹å†…
 	 * 
 	 * @throws Exception
 	 * */
@@ -437,7 +437,7 @@ public class LocalToFtps extends Thread {
 	}
 
 	/**
-	 * ±¸·İÔ´ÎÄ¼ş
+	 * å¤‡ä»½æºæ–‡ä»¶
 	 * */
 	public static void Backups(String[] One) throws Exception {
 		String filePath = One[5];
@@ -449,7 +449,7 @@ public class LocalToFtps extends Thread {
 	}
 
 	/**
-	 * Éú³ÉÎÄ¼ş¼Ğºó£¬¶ÁÈ¡Ô´ÎÄ¼ş£¬°ÑÔ´ÎÄ¼ş¼ôÇĞ£¨¸´ÖÆ£©µ½IPµØÖ·ÎÄ¼ş¼ĞÄÚ
+	 * ç”Ÿæˆæ–‡ä»¶å¤¹åï¼Œè¯»å–æºæ–‡ä»¶ï¼ŒæŠŠæºæ–‡ä»¶å‰ªåˆ‡ï¼ˆå¤åˆ¶ï¼‰åˆ°IPåœ°å€æ–‡ä»¶å¤¹å†…
 	 * */
 	public static void turnFile(String filePath, String f) throws Exception {
 		Vector<File> vecFile = new Vector<File>();
@@ -463,23 +463,23 @@ public class LocalToFtps extends Thread {
 			long lastTime = file.lastModified();
 			String last = stampToDate(lastTime);
 			String time = Judgement_time(last);
-			if (time.contains("½ñÌì")) {
-				// ½ñÌìµÄ£¬ÒªÉÏ´«
-				System.out.println(filename + "ÎÄ¼şÎª½ñÌìµÄ£¬×¼±¸¸´ÖÆµ½" + f + "ÎÄ¼ş¼ĞºóÉÏ´«£¡");
+			if (time.contains("ä»Šå¤©")) {
+				// ä»Šå¤©çš„ï¼Œè¦ä¸Šä¼ 
+				System.out.println(filename + "æ–‡ä»¶ä¸ºä»Šå¤©çš„ï¼Œå‡†å¤‡å¤åˆ¶åˆ°" + f + "æ–‡ä»¶å¤¹åä¸Šä¼ ï¼");
 				FileInputStream fis = new FileInputStream(filePath1);
 				FileOutputStream fos = new FileOutputStream(new File(f,
 						filename));
 				copy(fis, fos);
 				fis.close();
 				fos.close();
-				System.out.println("¸´ÖÆ½áÊøÁË£¡");
+				System.out.println("å¤åˆ¶ç»“æŸäº†ï¼");
 			} else {
-				if (time.contains("×òÌì")) {
-					// ×òÌìµÄ£¬²»¹Ü
+				if (time.contains("æ˜¨å¤©")) {
+					// æ˜¨å¤©çš„ï¼Œä¸ç®¡
 					continue;
 				} else {
-					// ÆäËûÊ±¼ä£¬É¾³ı
-					System.err.println(filePath1 + "ÎÄ¼şÎª×òÌìÖ®Ç°µÄ£¬×¼±¸É¾³ı£¡");
+					// å…¶ä»–æ—¶é—´ï¼Œåˆ é™¤
+					System.err.println(filePath1 + "æ–‡ä»¶ä¸ºæ˜¨å¤©ä¹‹å‰çš„ï¼Œå‡†å¤‡åˆ é™¤ï¼");
 					deleteFile(filePath1);
 				}
 			}
@@ -487,12 +487,12 @@ public class LocalToFtps extends Thread {
 	}
 
 	/**
-	 * ½«ÊäÈëÁ÷µÄÄÚÈİ¸´ÖÆµ½Êä³öÁ÷ÖĞ
+	 * å°†è¾“å…¥æµçš„å†…å®¹å¤åˆ¶åˆ°è¾“å‡ºæµä¸­
 	 * */
 	public static void copy(InputStream in, OutputStream out) throws Exception {
 		byte[] buf = new byte[1024];
 		int len = 0;
-		/* ¶ÁÈ¡ÎÄ¼şÄÚÈİ²¢Ğ´ÈëÎÄ¼ş×Ö½ÚÁ÷ÖĞ */
+		/* è¯»å–æ–‡ä»¶å†…å®¹å¹¶å†™å…¥æ–‡ä»¶å­—èŠ‚æµä¸­ */
 		while ((len = in.read(buf)) != -1) {
 			out.write(buf, 0, len);
 		}
