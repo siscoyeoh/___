@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-// ����ģʽ
-// ���ݿ����ӳ��࣬���ڻ�ȡ���ݿ����ӡ����õ���ģʽ��֤���е����Ӷ�ֻͨ��һ�����ӳع�����
+// 单例模式
+// 数据库连接池类，用于获取数据库连接。利用单例模式保证所有的连接都只通过一个连接池管理。
 // http://www.cnblogs.com/mousewheel/p/6660238.html
  class App {
     public static void main(String[] args) {
@@ -22,33 +22,33 @@ import java.io.InputStream;
 //    	if (a == 1) return;
     	/*
 
-���Դ���:1
-ʹ�����ӳ�:393
-��ʹ�����ӳ�:70
+测试次数:1
+使用连接池:393
+不使用连接池:70
 
-���Դ���:10
-ʹ�����ӳ�:497
-��ʹ�����ӳ�:509
+测试次数:10
+使用连接池:497
+不使用连接池:509
 
-���Դ���:15
-ʹ�����ӳ�:473
-��ʹ�����ӳ�:525
+测试次数:15
+使用连接池:473
+不使用连接池:525
 
-���Դ���:100
-ʹ�����ӳ�:718
-��ʹ�����ӳ�:4404
+测试次数:100
+使用连接池:718
+不使用连接池:4404
 
-���Դ���:1000
-ʹ�����ӳ�:3093
-��ʹ�����ӳ�:42511
+测试次数:1000
+使用连接池:3093
+不使用连接池:42511
 
-���Դ���:1000
-ʹ�����ӳ�:3401
-��ʹ�����ӳ�:41736
+测试次数:1000
+使用连接池:3401
+不使用连接池:41736
 
-���Դ���:10000
-ʹ�����ӳ�:28067
-��ʹ�����ӳ�:419659
+测试次数:10000
+使用连接池:28067
+不使用连接池:419659
 
     	 */
     	
@@ -59,7 +59,7 @@ import java.io.InputStream;
             for (int i = 0; i < times; i++) {
                 long beginTime = System.currentTimeMillis();
                 Connection con = DbUtil.getConnection();
-                // ִ�в�ѯ���
+                // 执行查询语句
                 String sql = "select * from stu";
                 PreparedStatement ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
@@ -68,7 +68,7 @@ import java.io.InputStream;
                 }
                 con.close();
                 long endTime = System.currentTimeMillis();
-                System.out.println(String.format("��%s��,%s", i, (endTime - beginTime)));
+                System.out.println(String.format("第%s次,%s", i, (endTime - beginTime)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,14 +96,14 @@ import java.io.InputStream;
                 }
                 con.close();
                 long endTime = System.currentTimeMillis();
-                System.out.println(String.format("��%s��,%s", i, (endTime - beginTime)));
+                System.out.println(String.format("第%s次,%s", i, (endTime - beginTime)));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     	Date date2 = new Date();
-    	System.out.println("���Դ���:" + (times));
-    	System.out.println("ʹ�����ӳ�:" + (date1.getTime() - date0.getTime()));
-    	System.out.println("��ʹ�����ӳ�:" + (date2.getTime() - date1.getTime()));
+    	System.out.println("测试次数:" + (times));
+    	System.out.println("使用连接池:" + (date1.getTime() - date0.getTime()));
+    	System.out.println("不使用连接池:" + (date2.getTime() - date1.getTime()));
     }
 }

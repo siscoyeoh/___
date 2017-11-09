@@ -8,15 +8,51 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.StringUtils;
 
 
 public class TestMain {
 	public static void main(String[] args) {
 		
+		String s = "assssss \t ";
+		Matcher m = Pattern.compile("\\s\t$").matcher(s);
+		System.out.println(m.find());
+//		System.out.println(StringUtils.countMatches(s, "\t"));
+		
+//		String line = " ！-BLSA0342-0630 -SHSN0917-0931 1007-(4500)1119-(3000)1156-(5000)1219-1347";
+//		String regex = "[\\s][！]{0,1}(([+]{0,2})|([-]{0,2}))([A-Z]{2,6})";
+//		Pattern pattern = Pattern.compile(regex);
+//		Matcher matcher = pattern.matcher(line);
+//		while (matcher.find()) {
+//			System.out.println(matcher.group());
+//		}
+		
+//		String s = "--FF--";
+//		System.out.println(s.replaceAll("[^A-Z]", ""));
+		
+//		String s = "ddd1234dfa1230(10.55)1300sfd4567sda8888f";
+//		Pattern pattern = Pattern.compile("[0-9]{4}[(]\\d{1,5}\\.\\d{0,4}[)][0-9]{4}");
+//		Matcher matcher = pattern.matcher(s);
+////		matcher.find();
+////		System.out.println(matcher.group());
+////		matcher.find();
+////		System.out.println(matcher.group());
+//		while (matcher.find()) {
+//			System.out.println(matcher.group());
+//		}
+		
+//		String s = "！-";
+//		System.out.println("！".equals("-"));
+//		char c1 = '！';
+//		char c2 = '-';
+//		System.out.println((int) c1);
+//		System.out.println((int) c2);
 		
 //		MapUtils.
 		

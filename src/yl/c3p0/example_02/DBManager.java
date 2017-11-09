@@ -11,11 +11,11 @@ import java.util.Properties;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;  
 /**
- * ¹¦ÄÜ£ºÊ¹ÓÃC3P0Á¬½Ó³Ø»ñÈ¡Êı¾İ¿âÁ¬½Ó¶ÔÏó 
+ * åŠŸèƒ½ï¼šä½¿ç”¨C3P0è¿æ¥æ± è·å–æ•°æ®åº“è¿æ¥å¯¹è±¡ 
  * 
  * @Author Yang Lin
- * @Date 2017Äê10ÔÂ16ÈÕ
- * @Time ÏÂÎç3:43:28
+ * @Date 2017å¹´10æœˆ16æ—¥
+ * @Time ä¸‹åˆ3:43:28
  */
 public class DBManager {  
       
@@ -23,7 +23,7 @@ public class DBManager {
     private static ComboPooledDataSource cpds = new ComboPooledDataSource(true);   
       
     /** 
-     * ´Ë´¦¿ÉÒÔ²»ÅäÖÃ£¬²ÉÓÃÄ¬ÈÏÒ²ĞĞ 
+     * æ­¤å¤„å¯ä»¥ä¸é…ç½®ï¼Œé‡‡ç”¨é»˜è®¤ä¹Ÿè¡Œ 
      */  
     static{  
     	Properties prop = new Properties();

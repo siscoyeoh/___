@@ -10,20 +10,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-// ¶àÀıÄ£Ê½
+// å¤šä¾‹æ¨¡å¼
 // http://boonya.iteye.com/blog/1828298
  class App {
     public static void main(String[] args) {
     	/*
 
 
-²âÊÔ´ÎÊı:100
-Ê¹ÓÃÁ¬½Ó³Ø:674
-²»Ê¹ÓÃÁ¬½Ó³Ø:3801
+æµ‹è¯•æ¬¡æ•°:100
+ä½¿ç”¨è¿æ¥æ± :674
+ä¸ä½¿ç”¨è¿æ¥æ± :3801
 
-²âÊÔ´ÎÊı:1000
-Ê¹ÓÃÁ¬½Ó³Ø:3267
-²»Ê¹ÓÃÁ¬½Ó³Ø:43370
+æµ‹è¯•æ¬¡æ•°:1000
+ä½¿ç”¨è¿æ¥æ± :3267
+ä¸ä½¿ç”¨è¿æ¥æ± :43370
 
     	 */
     	
@@ -34,7 +34,7 @@ import java.io.InputStream;
             for (int i = 0; i < times; i++) {
                 long beginTime = System.currentTimeMillis();
                 Connection con = DBManager.getConnection();
-                // Ö´ĞĞ²éÑ¯Óï¾ä
+                // æ‰§è¡ŒæŸ¥è¯¢è¯­å¥
                 String sql = "select * from stu";
                 PreparedStatement ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
@@ -43,7 +43,7 @@ import java.io.InputStream;
                 }
                 con.close();
                 long endTime = System.currentTimeMillis();
-                System.out.println(String.format("µÚ%s´Î,%s", i, (endTime - beginTime)));
+                System.out.println(String.format("ç¬¬%sæ¬¡,%s", i, (endTime - beginTime)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,14 +71,14 @@ import java.io.InputStream;
                 }
                 con.close();
                 long endTime = System.currentTimeMillis();
-                System.out.println(String.format("µÚ%s´Î,%s", i, (endTime - beginTime)));
+                System.out.println(String.format("ç¬¬%sæ¬¡,%s", i, (endTime - beginTime)));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     	Date date2 = new Date();
-    	System.out.println("²âÊÔ´ÎÊı:" + (times));
-    	System.out.println("Ê¹ÓÃÁ¬½Ó³Ø:" + (date1.getTime() - date0.getTime()));
-    	System.out.println("²»Ê¹ÓÃÁ¬½Ó³Ø:" + (date2.getTime() - date1.getTime()));
+    	System.out.println("æµ‹è¯•æ¬¡æ•°:" + (times));
+    	System.out.println("ä½¿ç”¨è¿æ¥æ± :" + (date1.getTime() - date0.getTime()));
+    	System.out.println("ä¸ä½¿ç”¨è¿æ¥æ± :" + (date2.getTime() - date1.getTime()));
     }
 }

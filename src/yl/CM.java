@@ -24,7 +24,174 @@ import org.apache.commons.lang.StringUtils;
  * @Time: 下午3:34:55
  */
 public class CM {
+	
+	public static void main(String[]args) {
+		
+		try {
+			System.out.println(GetUTCMinutesOfDay("1600"));
+			System.out.println(GetUTCMinutesOfDay("2359"));
+			System.out.println(GetUTCMinutesOfDay("0000"));
+			System.out.println(GetUTCMinutesOfDay("1559"));
+			System.out.println(GetUTCMinutesOfDay("1600"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		String str = "a12b123c1234def";
+//		String regex = "[0-9]{4}";
+//		System.out.println(GetMatchIndexxx(str, regex, 1));;
+		
+//		Matcher m = Pattern.compile(regex).matcher(str);
+//		System.out.println("---");
+//		while (m.find()) {
+//			System.out.println(m.group());
+//		}
+		
+//		try {
+//			Date date = new Date();
+//			date = Str2Date2("2017-10-18 23:59:59");
+//			int order = DayOrderOfMinute(date);
+//			System.out.println(order);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
+		/*
+		 * 
+usageDay31:41,60,64,74
+usageDay01:38,59,61,71
+result: 
+		 * 
+		 */
+//		List<Integer> usageDay31 = CM.String2ListInteger("41,60,64,74");
+//		List<Integer> usageDay01 = CM.String2ListInteger("38,59,61,71");
+//		List<Integer> result = ListSubtract(usageDay31, usageDay01);
+//		System.out.println(List2String(result));
+		
+//		List<Integer> baseUsage = new ArrayList<Integer>();
+//		List<List<Integer>> steps = new ArrayList<List<Integer>>();
+//		
+//		baseUsage = String2ListInteger("10,20,30");
+//		
+//		steps.add(String2ListInteger("1,2,3"));
+//		steps.add(String2ListInteger("1,2,3"));
+//		steps.add(String2ListInteger("1,2,3"));
+//		steps.add(String2ListInteger("1,2,3"));
+//		
+//		steps.add(String2ListInteger("1,2,3"));
+//		steps.add(String2ListInteger("1,2,3"));
+//		steps.add(String2ListInteger("1,2,3"));
+//		steps.add(String2ListInteger("1,2,3"));
+//		
+//		steps.add(String2ListInteger("1,2,3"));
+//		steps.add(String2ListInteger("1,2,3"));
+//		steps.add(String2ListInteger("1,2,3"));
+//		steps.add(String2ListInteger("1,2,3"));
+//		
+//		List<List<Integer>> usageForcast = DiskUsageForcast(steps, baseUsage);
+//		for (int i = 0; i < usageForcast.size(); i++) {
+//			System.out.println(List2String(usageForcast.get(i)));
+//		}
+		
+//		long[] se = StartEndTimeMonth(2015, 9, 0);
+//		System.out.println(new Date(se[0]));
+//		System.out.println(new Date(se[1]));
+		
+		
+//		String yyyy_MM_dd = year + "-" + month + "-01";
+//		try {
+//			Date date = Str2Date(yyyy_MM_dd);
+//			System.out.println(date);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+//		List<Integer> list = new ArrayList<Integer>();
+//		list.add(1);
+//		list.add(12);
+//		list.add(13);
+//		System.out.println(List2String(list));
+		
+//		String s = "11,22,33,44,55,66";
+//		List<Integer> list = String2ListInteger(s);
+//		int count = CountOverStandard(list, 33, false);
+//		System.out.println(count);
+//		System.out.println(BeyondTimezone("awps201709161032.CCC", new Date()));
+//		System.setProperty("last_minutes", 720 + "");
+//		File file = new File("F:/yl/awps201708232032.CCC");
+//		System.out.println(NeedToUpload(file, new Date()));
+//	}
+//		String content = "awps201708222400.CCC";
+//		MySystem.println(RegexMatcheYYYYMMDDHHMI(content));
+//	}
+//		MySystem.println(RegexMatcheIPv4("0.0.0.0"));
+//		MySystem.println(RegexMatcheIPv4("1.1.1.1"));
+//		MySystem.println(RegexMatcheIPv4("255.255.255.0"));
+//		MySystem.println(RegexMatcheIPv4("255.255.0.255"));
+//		MySystem.println(RegexMatcheIPv4("255.0.255.255"));
+//		MySystem.println(RegexMatcheIPv4("0.255.255.255"));
+//		MySystem.println();
+//		MySystem.println(RegexMatcheIPv4("255.255.255.256"));
+//		MySystem.println(RegexMatcheIPv4("255.255.256.256"));
+//		MySystem.println(RegexMatcheIPv4("255.256.255.255"));
+//		MySystem.println(RegexMatcheIPv4("255.256.255.256"));
+//		MySystem.println(RegexMatcheIPv4("255.256.256.255"));
+//		MySystem.println(RegexMatcheIPv4("255.256.256.256"));
+//		MySystem.println(RegexMatcheIPv4("256.255.255.255"));
+//		MySystem.println(RegexMatcheIPv4("256.255.255.256"));
+//		MySystem.println(RegexMatcheIPv4("256.255.256.255"));
+//		MySystem.println(RegexMatcheIPv4("256.255.256.256"));
+//		MySystem.println(RegexMatcheIPv4("256.256.255.255"));
+//		MySystem.println(RegexMatcheIPv4("256.256.255.256"));
+//		MySystem.println(RegexMatcheIPv4("256.256.256.255"));
+//		MySystem.println(RegexMatcheIPv4("256.256.256.256"));
+	}
+	
+	/** 根据一个utcHHMM, 获得其在对应的北京时间一天的order(0~1339) */
+	public static int GetUTCMinutesOfDay(String utcHHMM) throws Exception {
+		Matcher m = Pattern.compile("(([0-1][0-9])|20|21|22|23)[0-5][0-9]").matcher(utcHHMM);
+		if (m.find()) {
+			int utcHour = Integer.parseInt(utcHHMM.substring(0, 2));
+			int minute = Integer.parseInt(utcHHMM.substring(2, 4));
+			return (utcHour + 8) % 24 * 60 + minute;
+		}
+		throw new Exception(" 时间格式错误:" + utcHHMM);
+	}
+	
+	/** 子字符串modelStr在字符串str中第count次出现时的下标 */
+	public static int GetMatchIndexxx(String str, String regex, Integer count) {  
+	    //对子字符串进行匹配  
+	        Matcher slashMatcher = Pattern.compile(regex).matcher(str);  
+	    int mCount = 0;  
+	        //matcher.find();尝试查找与该模式匹配的输入序列的下一个子序列  
+	       while(slashMatcher.find()) {  
+	        mCount++;  
+	        //当modelStr字符第count次出现的位置  
+	        if(mCount == count){  
+	           break;  
+	        }  
+	    }  
+	        //matcher.start();返回以前匹配的初始索引。  
+	       return slashMatcher.start();  
+	}  
+	
+	public static int GetMatchIndex(String content, String regex, Integer count) {
+		int index = -1;
+		Matcher matcher = Pattern.compile(regex).matcher(content);
+		int mCount = 0;
+		while (matcher.find()) {
+			index = matcher.start();
+			mCount++;
+			if (mCount == count) {
+				break;
+			}
+		}
+		return index;
+	}
 
 	/** 获得一天的开始时间点 */
 	public static long DayStartTime(Date date) {
@@ -80,6 +247,27 @@ public class CM {
 		bs[2] = (byte) Integer.parseInt(temp[2]);
 		bs[3] = (byte) Integer.parseInt(temp[3]);
 		return bs;
+	}
+
+	/**
+	 * 
+	 * @param regex
+	 * @param phenomena
+	 * @return
+	 * @Author Yang Lin
+	 * @Date 2017年11月7日
+	 * @Time 上午10:12:41
+	 */
+	public static List<Integer> RegexMatchIndexes(String regex, String content) {
+		List<Integer> indexes = new ArrayList<Integer>();
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(content);
+		while (matcher.find()) {
+//			System.out.println(matcher.group());
+//			System.out.println(matcher.start());
+			indexes.add(matcher.start());
+		}
+		return indexes;
 	}
 
 	/**
@@ -188,10 +376,10 @@ public class CM {
 	 */
 	public static List<Integer> ListIntegerChu(List<Integer> fenzi,
 			List<Integer> fenmu, Integer times) {
-		System.out.println("Integer集合相除----------------------");
-		System.out.println(List2String(fenzi));
-		System.out.println(List2String(fenmu));
-		System.out.println("Integer集合相除----------------------");
+//		System.out.println("Integer集合相除----------------------");
+//		System.out.println(List2String(fenzi));
+//		System.out.println(List2String(fenmu));
+//		System.out.println("Integer集合相除----------------------");
 		List<Integer> result = new ArrayList<Integer>();
 		for (int i = 0; i < fenzi.size() && i < fenmu.size(); i++) {
 			if (fenzi.get(i) != null && fenmu.get(i) != null && fenmu.get(i) != 0) {
@@ -212,6 +400,18 @@ public class CM {
 			result = list.get(0).toString();
 			for (int i = 1; i < list.size(); i++) {
 				result += "," + list.get(i).toString();
+			}
+		}
+		return result;
+	}
+	
+	/** list转字符串, 用逗号隔开 */
+	public static String List2String2(List<?> list) {
+		String result = "";
+		if (list != null && list.size() > 0) {
+			result = list.get(0).toString();
+			for (int i = 1; i < list.size(); i++) {
+				result += ";" + list.get(i).toString();
 			}
 		}
 		return result;
@@ -418,116 +618,18 @@ public class CM {
 		}
 		return usageForecast;
 	}
+	
+	/** 是否包含中文 */
+	public static boolean ContainCN(String phenomena) {
+		Pattern p = Pattern.compile("[\u4e00-\u9fa5]");
+		Matcher m = p.matcher(phenomena);
+		return m.find();
+	}
 
 	// --------------------------------------------------------------
 	// --------------------------------------------------------------
 	// -------------------------------------------------------------- 工程使用的公共方法, 结束
 	// --------------------------------------------------------------
 	// --------------------------------------------------------------
-	
-	public static void main(String[]args) {
-		
-		try {
-			Date date = new Date();
-			date = Str2Date2("2017-10-18 23:59:59");
-			int order = DayOrderOfMinute(date);
-			System.out.println(order);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		/*
-		 * 
-usageDay31:41,60,64,74
-usageDay01:38,59,61,71
-result: 
-		 * 
-		 */
-//		List<Integer> usageDay31 = CM.String2ListInteger("41,60,64,74");
-//		List<Integer> usageDay01 = CM.String2ListInteger("38,59,61,71");
-//		List<Integer> result = ListSubtract(usageDay31, usageDay01);
-//		System.out.println(List2String(result));
-		
-//		List<Integer> baseUsage = new ArrayList<Integer>();
-//		List<List<Integer>> steps = new ArrayList<List<Integer>>();
-//		
-//		baseUsage = String2ListInteger("10,20,30");
-//		
-//		steps.add(String2ListInteger("1,2,3"));
-//		steps.add(String2ListInteger("1,2,3"));
-//		steps.add(String2ListInteger("1,2,3"));
-//		steps.add(String2ListInteger("1,2,3"));
-//		
-//		steps.add(String2ListInteger("1,2,3"));
-//		steps.add(String2ListInteger("1,2,3"));
-//		steps.add(String2ListInteger("1,2,3"));
-//		steps.add(String2ListInteger("1,2,3"));
-//		
-//		steps.add(String2ListInteger("1,2,3"));
-//		steps.add(String2ListInteger("1,2,3"));
-//		steps.add(String2ListInteger("1,2,3"));
-//		steps.add(String2ListInteger("1,2,3"));
-//		
-//		List<List<Integer>> usageForcast = DiskUsageForcast(steps, baseUsage);
-//		for (int i = 0; i < usageForcast.size(); i++) {
-//			System.out.println(List2String(usageForcast.get(i)));
-//		}
-		
-//		long[] se = StartEndTimeMonth(2015, 9, 0);
-//		System.out.println(new Date(se[0]));
-//		System.out.println(new Date(se[1]));
-		
-		
-//		String yyyy_MM_dd = year + "-" + month + "-01";
-//		try {
-//			Date date = Str2Date(yyyy_MM_dd);
-//			System.out.println(date);
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		
-//		List<Integer> list = new ArrayList<Integer>();
-//		list.add(1);
-//		list.add(12);
-//		list.add(13);
-//		System.out.println(List2String(list));
-		
-//		String s = "11,22,33,44,55,66";
-//		List<Integer> list = String2ListInteger(s);
-//		int count = CountOverStandard(list, 33, false);
-//		System.out.println(count);
-//		System.out.println(BeyondTimezone("awps201709161032.CCC", new Date()));
-//		System.setProperty("last_minutes", 720 + "");
-//		File file = new File("F:/yl/awps201708232032.CCC");
-//		System.out.println(NeedToUpload(file, new Date()));
-//	}
-//		String content = "awps201708222400.CCC";
-//		MySystem.println(RegexMatcheYYYYMMDDHHMI(content));
-//	}
-//		MySystem.println(RegexMatcheIPv4("0.0.0.0"));
-//		MySystem.println(RegexMatcheIPv4("1.1.1.1"));
-//		MySystem.println(RegexMatcheIPv4("255.255.255.0"));
-//		MySystem.println(RegexMatcheIPv4("255.255.0.255"));
-//		MySystem.println(RegexMatcheIPv4("255.0.255.255"));
-//		MySystem.println(RegexMatcheIPv4("0.255.255.255"));
-//		MySystem.println();
-//		MySystem.println(RegexMatcheIPv4("255.255.255.256"));
-//		MySystem.println(RegexMatcheIPv4("255.255.256.256"));
-//		MySystem.println(RegexMatcheIPv4("255.256.255.255"));
-//		MySystem.println(RegexMatcheIPv4("255.256.255.256"));
-//		MySystem.println(RegexMatcheIPv4("255.256.256.255"));
-//		MySystem.println(RegexMatcheIPv4("255.256.256.256"));
-//		MySystem.println(RegexMatcheIPv4("256.255.255.255"));
-//		MySystem.println(RegexMatcheIPv4("256.255.255.256"));
-//		MySystem.println(RegexMatcheIPv4("256.255.256.255"));
-//		MySystem.println(RegexMatcheIPv4("256.255.256.256"));
-//		MySystem.println(RegexMatcheIPv4("256.256.255.255"));
-//		MySystem.println(RegexMatcheIPv4("256.256.255.256"));
-//		MySystem.println(RegexMatcheIPv4("256.256.256.255"));
-//		MySystem.println(RegexMatcheIPv4("256.256.256.256"));
-	}
 		
 }

@@ -4,8 +4,8 @@ public class PressureBean {
 	int userId;  
     String bpDate;  
     String bpTime;  
-    int syspress;  //ÊÕËõÑ¹(mmHg)  
-    int diapress; //ÊæÕÅÑ¹(mmHg) 
+    int syspress;  //æ”¶ç¼©å‹(mmHg)  
+    int diapress; //èˆ’å¼ å‹(mmHg) 
     
 	public int getUserId() {
 		return userId;

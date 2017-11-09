@@ -10,7 +10,7 @@
 	<classpathentry kind="lib" path="lib/snmp4j-2.5.8.jar" sourcepath="E:/JavaDevTools/java框架工具/snmp4j-2.5.8-distribution/snmp4j-2.5.8/src"/>
 	<classpathentry kind="lib" path="lib/pdfbox-1.7.1.jar"/>
 	<classpathentry kind="lib" path="lib/poi-3.16-beta1.jar"/>
-	<classpathentry kind="lib" path="lib/commons-lang-2.3.jar" sourcepath="E:/JavaDevTools/git_repository/mysrc/src">
+	<classpathentry kind="lib" path="lib/commons-lang-2.3.jar" sourcepath="E:/JavaDevTools/java框架工具/apache commons系列_/commons lang 2.6">
 		<attributes>
 			<attribute name="source_encoding" value="UTF-8"/>
 		</attributes>

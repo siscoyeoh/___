@@ -47,8 +47,8 @@ public class TestMain {
             String year, int searchby, String month, String nodatamess,  
             List list, Log log, String bp_shou, String bp_shuzhang) {  
  
-        // ÓĞ¿ÉÄÜÓÃ»§ÔÚºóÃæµÄ°æ±¾ÖĞ¹ÊÒâÊäÈë²»Õı³£ÊıÖµ£¬µ«ÊÇÎªÁË±£Ö¤Í¼Æ¬»­Í¼µÄÍêÕû£¬ÕâÀïÏÈ¼ÆËã  
-        // ÓÃ»§ÑªÑ¹ÖµµÄ×î´óÖµ¡£  
+        // æœ‰å¯èƒ½ç”¨æˆ·åœ¨åé¢çš„ç‰ˆæœ¬ä¸­æ•…æ„è¾“å…¥ä¸æ­£å¸¸æ•°å€¼ï¼Œä½†æ˜¯ä¸ºäº†ä¿è¯å›¾ç‰‡ç”»å›¾çš„å®Œæ•´ï¼Œè¿™é‡Œå…ˆè®¡ç®—  
+        // ç”¨æˆ·è¡€å‹å€¼çš„æœ€å¤§å€¼ã€‚  
  
  
         double maxpress = 0;  
@@ -99,41 +99,41 @@ public class TestMain {
         jfreechart.setBackgroundPaint(Color.white);  
           
  
-        // ÉèÖÃ±êÌâµÄÑÕÉ«  
+        // è®¾ç½®æ ‡é¢˜çš„é¢œè‰²  
         TextTitle text = new TextTitle(title);  
         text.setPaint(new Color(102, 102, 102));  
         jfreechart.setTitle(text);  
         XYPlot xyplot = jfreechart.getXYPlot();  
         xyplot.setBackgroundPaint(new Color(255, 253, 246));  
-        xyplot.setOutlineStroke(new BasicStroke(1.5f)); // ±ß¿ò´ÖÏ¸  
+        xyplot.setOutlineStroke(new BasicStroke(1.5f)); // è¾¹æ¡†ç²—ç»†  
         ValueAxis vaxis = xyplot.getDomainAxis();  
-        vaxis.setAxisLineStroke(new BasicStroke(1.5f)); // ×ø±êÖá´ÖÏ¸  
-        vaxis.setAxisLinePaint(new Color(215, 215, 215)); // ×ø±êÖáÑÕÉ«  
-        xyplot.setOutlineStroke(new BasicStroke(1.5f)); // ±ß¿ò´ÖÏ¸  
-        vaxis.setLabelPaint(new Color(10, 10, 10)); // ×ø±êÖá±êÌâÑÕÉ«  
-        vaxis.setTickLabelPaint(new Color(102, 102, 102)); // ×ø±êÖá±ê³ßÖµÑÕÉ«  
-        vaxis.setLowerMargin(0.06d);// ·ÖÀàÖáÏÂ£¨×ó£©±ß¾à  
-        vaxis.setUpperMargin(0.14d);// ·ÖÀàÖáÏÂ£¨ÓÒ£©±ß¾à,·ÀÖ¹×îºó±ßµÄÒ»¸öÊı¾İ¿¿½üÁË×ø±êÖá¡£  
+        vaxis.setAxisLineStroke(new BasicStroke(1.5f)); // åæ ‡è½´ç²—ç»†  
+        vaxis.setAxisLinePaint(new Color(215, 215, 215)); // åæ ‡è½´é¢œè‰²  
+        xyplot.setOutlineStroke(new BasicStroke(1.5f)); // è¾¹æ¡†ç²—ç»†  
+        vaxis.setLabelPaint(new Color(10, 10, 10)); // åæ ‡è½´æ ‡é¢˜é¢œè‰²  
+        vaxis.setTickLabelPaint(new Color(102, 102, 102)); // åæ ‡è½´æ ‡å°ºå€¼é¢œè‰²  
+        vaxis.setLowerMargin(0.06d);// åˆ†ç±»è½´ä¸‹ï¼ˆå·¦ï¼‰è¾¹è·  
+        vaxis.setUpperMargin(0.14d);// åˆ†ç±»è½´ä¸‹ï¼ˆå³ï¼‰è¾¹è·,é˜²æ­¢æœ€åè¾¹çš„ä¸€ä¸ªæ•°æ®é è¿‘äº†åæ ‡è½´ã€‚  
           
-        //XÖáÎªÈÕÆÚ¸ñÊ½£¬ÕâÀïÊÇ×¨ÃÅµÄ´¦ÀíÈÕÆÚµÄÀà£¬  
+        //Xè½´ä¸ºæ—¥æœŸæ ¼å¼ï¼Œè¿™é‡Œæ˜¯ä¸“é—¨çš„å¤„ç†æ—¥æœŸçš„ç±»ï¼Œ  
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");  
         DateAxis dateaxis = (DateAxis) xyplot.getDomainAxis();  
-        if (weekOrmonth == 0) {//ÒÔÌìÎª¿Ì¶È£¬Ê±¼ä¸ñÊ½Îªyyyy-MM-dd,Èç2008-02-06  
+        if (weekOrmonth == 0) {//ä»¥å¤©ä¸ºåˆ»åº¦ï¼Œæ—¶é—´æ ¼å¼ä¸ºyyyy-MM-dd,å¦‚2008-02-06  
             dateaxis.setTickUnit(new DateTickUnit(DateTickUnit.DAY, 1, format));  
-        } else if (weekOrmonth == 1) {//ÒÔÖÜÎª¿Ì¶È£¬Ê±¼äÏÔÊ¾Îª 2009ÄêµÚ4ÖÜ£¨£¨ÕâÀïÊÇSimpleDateFormatµÄÓÃ·¨£¬  
-            //ÕâÀïÎªÁË×÷·±Ìå°æ£¬Ó¢ÎÄ°æºÍ¼òÌå°æ£¬ÓÃÁË¹ú¼Ê»¯´¦Àí£¬½«ÕâĞ©¿É±äµÄ×ÊÔ´ÔÚÎÄ×Ö×ÊÔ´ÀïÃæ£¬×¢ÒâÒ»ÏÂ£¬ÕâÀïµÄy£¬M¡¢wÊÇSimpleDateFormatµÄ¹Ø¼ü×Ö£¬  
-            //ÈçÓ¢ÎÄ±íÊ¾09ÄêµÚ3ÖÜ¾ÍÊÇ09W3£¬ÄÇÃ´£¬ÕâÀïµÄWĞèÒªÓÃ¡®¡¯ÒıÆğÀ´£©  
+        } else if (weekOrmonth == 1) {//ä»¥å‘¨ä¸ºåˆ»åº¦ï¼Œæ—¶é—´æ˜¾ç¤ºä¸º 2009å¹´ç¬¬4å‘¨ï¼ˆï¼ˆè¿™é‡Œæ˜¯SimpleDateFormatçš„ç”¨æ³•ï¼Œ  
+            //è¿™é‡Œä¸ºäº†ä½œç¹ä½“ç‰ˆï¼Œè‹±æ–‡ç‰ˆå’Œç®€ä½“ç‰ˆï¼Œç”¨äº†å›½é™…åŒ–å¤„ç†ï¼Œå°†è¿™äº›å¯å˜çš„èµ„æºåœ¨æ–‡å­—èµ„æºé‡Œé¢ï¼Œæ³¨æ„ä¸€ä¸‹ï¼Œè¿™é‡Œçš„yï¼ŒMã€wæ˜¯SimpleDateFormatçš„å…³é”®å­—ï¼Œ  
+            //å¦‚è‹±æ–‡è¡¨ç¤º09å¹´ç¬¬3å‘¨å°±æ˜¯09W3ï¼Œé‚£ä¹ˆï¼Œè¿™é‡Œçš„Wéœ€è¦ç”¨â€˜â€™å¼•èµ·æ¥ï¼‰  
             format = new SimpleDateFormat("yyyy" + year + index + "w" + week);  
             dateaxis.setTickUnit(new DateTickUnit(DateTickUnit.DAY, 7, format));  
-        } else if (weekOrmonth == 2) {//ÒÔÔÂÎª¿Ì¶È£¬Ê±¼äÏÔÊ¾Îª09-02 £¨09Äê2ÔÂ£©  
+        } else if (weekOrmonth == 2) {//ä»¥æœˆä¸ºåˆ»åº¦ï¼Œæ—¶é—´æ˜¾ç¤ºä¸º09-02 ï¼ˆ09å¹´2æœˆï¼‰  
             format = new SimpleDateFormat("yy-MM");  
             dateaxis  
                     .setTickUnit(new DateTickUnit(DateTickUnit.MONTH, 1, format));  
  
         }  
-        dateaxis.setVerticalTickLabels(false); // ÉèÎªtrue±íÊ¾ºá×ø±êĞı×ªµ½´¹Ö±¡£  
+        dateaxis.setVerticalTickLabels(false); // è®¾ä¸ºtrueè¡¨ç¤ºæ¨ªåæ ‡æ—‹è½¬åˆ°å‚ç›´ã€‚  
         if (searchby == 6 || searchby == 3) {  
-            dateaxis.setAutoTickUnitSelection(true); // ÓÉÓÚºáÖá±êÇ©¹ı¶à£¬ÕâÀïÉèÖÃÎª×Ô¶¯¸ñÊ½ ¡£  
+            dateaxis.setAutoTickUnitSelection(true); // ç”±äºæ¨ªè½´æ ‡ç­¾è¿‡å¤šï¼Œè¿™é‡Œè®¾ç½®ä¸ºè‡ªåŠ¨æ ¼å¼ ã€‚  
             dateaxis.setDateFormatOverride(format);  
         }  
         dateaxis.setTickMarkPosition(DateTickMarkPosition.START);  
@@ -144,27 +144,27 @@ public class TestMain {
         valueAxis.setLowerBound(min);  
         valueAxis.setAutoRange(false);  
  
-        valueAxis.setAxisLineStroke(new BasicStroke(1.5f)); // ×ø±êÖá´ÖÏ¸  
-        valueAxis.setAxisLinePaint(new Color(215, 215, 215)); // ×ø±êÖáÑÕÉ«  
-        valueAxis.setLabelPaint(new Color(10, 10, 10)); // ×ø±êÖá±êÌâÑÕÉ«  
-        valueAxis.setTickLabelPaint(new Color(102, 102, 102)); // ×ø±êÖá±ê³ßÖµÑÕÉ«  
+        valueAxis.setAxisLineStroke(new BasicStroke(1.5f)); // åæ ‡è½´ç²—ç»†  
+        valueAxis.setAxisLinePaint(new Color(215, 215, 215)); // åæ ‡è½´é¢œè‰²  
+        valueAxis.setLabelPaint(new Color(10, 10, 10)); // åæ ‡è½´æ ‡é¢˜é¢œè‰²  
+        valueAxis.setTickLabelPaint(new Color(102, 102, 102)); // åæ ‡è½´æ ‡å°ºå€¼é¢œè‰²  
           
         xyplot.setRangeGridlinesVisible(true);  
         xyplot.setDomainGridlinesVisible(true);  
         xyplot.setRangeGridlinePaint(Color.LIGHT_GRAY);  
         xyplot.setDomainGridlinePaint(Color.LIGHT_GRAY);  
         xyplot.setBackgroundPaint(new Color(255, 253, 246));  
-        xyplot.setNoDataMessage(nodatamess);//Ã»ÓĞÊı¾İÊ±ÏÔÊ¾µÄÎÄ×ÖËµÃ÷¡£  
-        xyplot.setNoDataMessageFont(new Font("", Font.BOLD, 14));//×ÖÌåµÄ´óĞ¡£¬´ÖÌå¡£  
-        xyplot.setNoDataMessagePaint(new Color(87, 149, 117));//×ÖÌåÑÕÉ«  
+        xyplot.setNoDataMessage(nodatamess);//æ²¡æœ‰æ•°æ®æ—¶æ˜¾ç¤ºçš„æ–‡å­—è¯´æ˜ã€‚  
+        xyplot.setNoDataMessageFont(new Font("", Font.BOLD, 14));//å­—ä½“çš„å¤§å°ï¼Œç²—ä½“ã€‚  
+        xyplot.setNoDataMessagePaint(new Color(87, 149, 117));//å­—ä½“é¢œè‰²  
         xyplot.setAxisOffset(new RectangleInsets(0d, 0d, 0d, 5d)); //  
  
-        // add range marker(ÊæÕÅÑ¹µÄÇøÓòmarker,·¶Î§ÊÇ´Ó62µ½81)  
+        // add range marker(èˆ’å¼ å‹çš„åŒºåŸŸmarker,èŒƒå›´æ˜¯ä»62åˆ°81)  
  
         double lowpress = 62;  
         double uperpress = 81;  
         IntervalMarker intermarker = new IntervalMarker(lowpress, uperpress);  
-        intermarker.setPaint(Color.decode("#66FFCC"));// ÓòîÉ«  
+        intermarker.setPaint(Color.decode("#66FFCC"));// åŸŸé¡è‰²  
           
         intermarker.setLabelFont(new Font("SansSerif", 41, 14));  
         intermarker.setLabelPaint(Color.RED);  
@@ -173,12 +173,12 @@ public class TestMain {
         if (xydataset != null) {  
             xyplot.addRangeMarker(intermarker, Layer.BACKGROUND);  
         }  
-    //(ÊÕËõÑ¹µÄÇøÓòmarker£¬·¶Î§ÊÇ´Ó102µ½120)  
+    //(æ”¶ç¼©å‹çš„åŒºåŸŸmarkerï¼ŒèŒƒå›´æ˜¯ä»102åˆ°120)  
         double lowpress1 = 102;  
         double uperpress1 = 120;  
         IntervalMarker inter = new IntervalMarker(lowpress1, uperpress1);  
         inter.setLabelOffsetType(LengthAdjustmentType.EXPAND);  
-        inter.setPaint(Color.decode("#66FFCC"));// ÓòîÉ«  
+        inter.setPaint(Color.decode("#66FFCC"));// åŸŸé¡è‰²  
  
  
         inter.setLabelFont(new Font("SansSerif", 41, 14));  
@@ -186,12 +186,12 @@ public class TestMain {
         inter.setLabel(bp_shou);  
           
         if (xydataset != null) {  
-            xyplot.addRangeMarker(inter, Layer.BACKGROUND); // ¼ÓÉÏLayer.BACKGROUND£¬½«makerµ÷µ½ÕÛÏßÏÂÃæ¡£  
+            xyplot.addRangeMarker(inter, Layer.BACKGROUND); // åŠ ä¸ŠLayer.BACKGROUNDï¼Œå°†makerè°ƒåˆ°æŠ˜çº¿ä¸‹é¢ã€‚  
         }  
  
         XYLineAndShapeRenderer xylineandshaperenderer = (XYLineAndShapeRenderer) xyplot  
                 .getRenderer();  
-        //µÚÒ»ÌõÕÛÏßµÄÑÕÉ«  
+        //ç¬¬ä¸€æ¡æŠ˜çº¿çš„é¢œè‰²  
         xylineandshaperenderer.setBaseItemLabelsVisible(true);  
         xylineandshaperenderer.setSeriesFillPaint(0, new Color(127, 128, 0));  
         xylineandshaperenderer.setSeriesPaint(0, new Color(127, 128, 0));  
@@ -199,26 +199,26 @@ public class TestMain {
         xylineandshaperenderer.setSeriesShapesVisible(0, true);  
         xylineandshaperenderer.setSeriesShapesVisible(1, true);  
  
-        //µÚ¶şÌõÕÛÏßµÄÑÕÉ«  
+        //ç¬¬äºŒæ¡æŠ˜çº¿çš„é¢œè‰²  
         xylineandshaperenderer.setSeriesFillPaint(1, new Color(254, 103, 0));  
         xylineandshaperenderer.setSeriesPaint(1, new Color(254, 103, 0));  
         xylineandshaperenderer.setSeriesShapesVisible(1, true);  
         xylineandshaperenderer.setSeriesVisible(2, false);//  
-        xylineandshaperenderer.setSeriesVisible(3, false);//²»ÏÔÊ¾ÏÂÃæ±êÌâ  
+        xylineandshaperenderer.setSeriesVisible(3, false);//ä¸æ˜¾ç¤ºä¸‹é¢æ ‡é¢˜  
  
-        //ÕÛÏßµÄ´ÖÏ¸µ÷  
+        //æŠ˜çº¿çš„ç²—ç»†è°ƒ  
         StandardXYToolTipGenerator xytool = new StandardXYToolTipGenerator();  
         xylineandshaperenderer.setToolTipGenerator(xytool);  
         xylineandshaperenderer.setStroke(new BasicStroke(1.5f));  
  
-        // ÏÔÊ¾½ÚµãµÄÖµ  
+        // æ˜¾ç¤ºèŠ‚ç‚¹çš„å€¼  
         xylineandshaperenderer.setBaseItemLabelsVisible(true);  
         xylineandshaperenderer  
                 .setBasePositiveItemLabelPosition(new ItemLabelPosition(  
                         ItemLabelAnchor.OUTSIDE12, TextAnchor.BASELINE_CENTER));  
         xylineandshaperenderer  
                 .setBaseItemLabelGenerator(new StandardXYItemLabelGenerator());  
-        xylineandshaperenderer.setBaseItemLabelPaint(new Color(102, 102, 102));// ÏÔÊ¾ÕÛµãÊıÖµ×ÖÌåµÄÑÕÉ«  
+        xylineandshaperenderer.setBaseItemLabelPaint(new Color(102, 102, 102));// æ˜¾ç¤ºæŠ˜ç‚¹æ•°å€¼å­—ä½“çš„é¢œè‰²  
  
         return jfreechart;  
     } 
@@ -234,7 +234,7 @@ public class TestMain {
         int ye = 2000;  
         int week = 1;  
  
-        // °´ÌìÏÔÊ¾  
+        // æŒ‰å¤©æ˜¾ç¤º  
         if (dayOrweekOrmonth == 0) {  
  
             TimeSeries timeseries = new TimeSeries(shou,  
@@ -277,7 +277,7 @@ public class TestMain {
             timesers.addSeries(timeseries1);  
             timesers.addSeries(timeseriedia1);  
  
-        } else if (dayOrweekOrmonth == 1) {//°´ÖÜÏÔÊ¾  
+        } else if (dayOrweekOrmonth == 1) {//æŒ‰å‘¨æ˜¾ç¤º  
             TimeSeries timeseries = new TimeSeries(shou,  
                     org.jfree.data.time.Week.class);  
             TimeSeries timeseries1 = new TimeSeries("c1",  
@@ -324,7 +324,7 @@ public class TestMain {
               
             timesers.addSeries(timeseriedia1);  
  
-        } else {//°´ÔÂÏÔÊ¾  
+        } else {//æŒ‰æœˆæ˜¾ç¤º  
             TimeSeries timeseries = new TimeSeries(shou,  
                     org.jfree.data.time.Month.class);  
             TimeSeries timeseries1 = new TimeSeries("c1",  
