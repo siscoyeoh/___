@@ -24,10 +24,6 @@ public class FTPUtils {
 	 */
 	public static FTPClient GetFTPClient(String ftpHost, String port, String username,
 			String password) {
-		System.out.println(" ★ ftpHost:" + ftpHost);
-		System.out.println(" ★ port:" + port);
-		System.out.println(" ★ username:" + username);
-		System.out.println(" ★ password:" + password);
 		FTPClient ftpClient = null;
 		int portI = -1;
 		try {

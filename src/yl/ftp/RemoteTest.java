@@ -10,6 +10,8 @@ import java.util.Date;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
+import yl.__.PD;
+
 public class RemoteTest {
 
 	public static void main(String[] args) {
@@ -28,14 +30,11 @@ public class RemoteTest {
 		pathname = "/datas";
 		pathname = "/datas/yyyymmdd";
 		
-//		ftpHost = "";
-//		port = "21";
-//		username = "";
-//		password = "";
-//		pathname = "/SWC/awos/ERROR_FILES/20171030/";
-//		pathname = "/SWC/awos/ERROR_FILES/";
-//		pathname = "/SWC/awos/";
-//		pathname = "/datas/yyyymmdd";
+		ftpHost = PD.beijing106Host;
+		port = "21";
+		username = PD.beijing106Username;
+		password = PD.beijing106Password;
+		pathname = PD.beijing106Path;
 		
 		displayFiles(ftpHost, port, username, password, pathname);
 //		downloadBacklogFiles(ftpHost, port, username, password, pathname);
